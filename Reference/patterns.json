@@ -1,0 +1,1194 @@
+{
+    "global_core_logic": {
+        "penetration_rule_pct": 3.0,
+        "volume_surge_requirement": {
+            "indicator": "SMA",
+            "period": 20,
+            "multiplier": 1.5
+        },
+        "indicator_orthogonality_categories": [
+            "trend",
+            "momentum",
+            "volume",
+            "volatility"
+        ],
+        "volatility_adjusted_risk": {
+            "indicator": "ATR",
+            "multiplier_min": 1.5,
+            "multiplier_max": 2.0
+        }
+    },
+    "patterns": {
+        "candlestick_atomic": {
+            "single_candle": [
+                {
+                    "name": "Marubozu",
+                    "features": [
+                        "elongated_real_body",
+                        "no_upper_shadow",
+                        "no_lower_shadow"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "OBV",
+                            "surge_requirement": ">150%_20_day_avg"
+                        },
+                        "trend": {
+                            "type": "SMA"
+                        }
+                    },
+                    "execution": {
+                        "entry": "market_close",
+                        "stop_loss": "opposite_extreme",
+                        "target": "next_support_resistance"
+                    }
+                },
+                {
+                    "name": "Doji",
+                    "features": [
+                        "open_close_identical"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "extreme_levels": [
+                                ">70",
+                                "<30"
+                            ]
+                        }
+                    },
+                    "execution": {
+                        "entry": "pending_stop_breakout",
+                        "stop_loss": "opposite_wick",
+                        "target_atr_multiplier": [
+                            1.5,
+                            2.0
+                        ]
+                    }
+                },
+                {
+                    "name": "Long-Legged Doji",
+                    "features": [
+                        "open_close_identical",
+                        "exceptionally_long_shadows"
+                    ],
+                    "indicator_confluence": {
+                        "volatility": {
+                            "type": "Bollinger Bands",
+                            "condition": "shadows_pierce_outer_bands_close_inside"
+                        }
+                    },
+                    "execution": {
+                        "entry": "confirmation_close_inside_band",
+                        "stop_loss": "extreme_of_piercing_wick",
+                        "target": "center_band_sma"
+                    }
+                },
+                {
+                    "name": "Dragonfly Doji",
+                    "features": [
+                        "long_lower_shadow",
+                        "no_upper_shadow",
+                        "open_close_high_identical"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "Stochastic",
+                            "condition": "cross_upward_below_20"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_of_high",
+                        "stop_loss": "extreme_lower_wick",
+                        "target": "next_fibonacci_retracement"
+                    }
+                },
+                {
+                    "name": "Gravestone Doji",
+                    "features": [
+                        "long_upper_shadow",
+                        "no_lower_shadow",
+                        "open_close_low_identical"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "MACD",
+                            "condition": "histogram_declining_or_cross_below_signal"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_of_low",
+                        "stop_loss": "extreme_upper_wick",
+                        "target": "previous_swing_low"
+                    }
+                },
+                {
+                    "name": "Spinning Top",
+                    "features": [
+                        "small_real_body",
+                        "symmetrical_shadows"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "condition": "divergence"
+                        }
+                    },
+                    "execution": {
+                        "entry": "directional_close_outside_range",
+                        "stop_loss": "extreme_wick",
+                        "target_rr_ratio": 2.0
+                    }
+                },
+                {
+                    "name": "High-Wave Candle",
+                    "features": [
+                        "small_real_body",
+                        "extremely_long_shadows"
+                    ],
+                    "indicator_confluence": {
+                        "volatility": {
+                            "type": "ATR",
+                            "condition": "expansion"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_of_total_range",
+                        "stop_loss": "opposite_extreme_reduced_size",
+                        "target": "measured_move_prior_trend"
+                    }
+                },
+                {
+                    "name": "Hammer",
+                    "features": [
+                        "small_real_body_upper_end",
+                        "long_lower_shadow_min_2x_body"
+                    ],
+                    "indicator_confluence": {
+                        "trend": {
+                            "type": "SMA",
+                            "period": 200,
+                            "condition": "prints_on_sma"
+                        },
+                        "volume": {
+                            "surge_requirement": ">150%"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_or_break_high",
+                        "stop_loss": "below_lower_shadow",
+                        "target": "50_day_sma_or_swing_high"
+                    }
+                },
+                {
+                    "name": "Hanging Man",
+                    "features": [
+                        "small_real_body_upper_end",
+                        "long_lower_shadow_min_2x_body",
+                        "uptrend_apex"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "MFI",
+                            "condition": "bearish_divergence"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_below_real_body",
+                        "stop_loss": "above_high",
+                        "target": "base_of_prior_bullish_leg"
+                    }
+                },
+                {
+                    "name": "Inverted Hammer",
+                    "features": [
+                        "small_real_body_lower_end",
+                        "long_upper_shadow",
+                        "downtrend"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "MACD",
+                            "condition": "histogram_shrinking"
+                        }
+                    },
+                    "execution": {
+                        "entry": "clears_high_of_real_body",
+                        "stop_loss": "below_low",
+                        "target": "nearest_resistance_zone"
+                    }
+                },
+                {
+                    "name": "Shooting Star",
+                    "features": [
+                        "small_real_body_lower_end",
+                        "long_upper_shadow",
+                        "uptrend"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "condition": ">70_overbought"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breaks_low",
+                        "stop_loss": "above_upper_shadow",
+                        "target": "20_or_50_day_ema"
+                    }
+                },
+                {
+                    "name": "Belt Hold",
+                    "features": [
+                        "open_extreme",
+                        "close_near_opposite_end",
+                        "no_shadow_at_open"
+                    ],
+                    "indicator_confluence": {
+                        "trend": {
+                            "type": "Trendline",
+                            "condition": "perfect_rejection"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_in_direction_of_body",
+                        "stop_loss": "beyond_opening_price",
+                        "target": "opposite_channel_boundary"
+                    }
+                }
+            ],
+            "dual_candle": [
+                {
+                    "name": "Engulfing",
+                    "features": [
+                        "second_body_obscures_first"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "MACD",
+                            "condition": "crossover"
+                        },
+                        "volume": {
+                            "surge_requirement": ">150%"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_of_engulfing",
+                        "stop_loss": "extreme_of_engulfing",
+                        "target": "measured_move_trend_leg_height"
+                    }
+                },
+                {
+                    "name": "Harami",
+                    "features": [
+                        "first_large",
+                        "second_small_inside_first"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "Stochastic",
+                            "condition": "cross_within_overbought_oversold"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_of_second_candle_range",
+                        "stop_loss": "extreme_of_first_candle",
+                        "target": "next_support_resistance"
+                    }
+                },
+                {
+                    "name": "Harami Cross",
+                    "features": [
+                        "first_large",
+                        "second_doji_inside_first"
+                    ],
+                    "indicator_confluence": {
+                        "volatility": {
+                            "type": "Bollinger Bands",
+                            "condition": "squeeze"
+                        }
+                    },
+                    "execution": {
+                        "entry": "pending_order_outside_doji",
+                        "stop_loss": "extreme_of_first_candle",
+                        "target": "opposite_outer_band"
+                    }
+                },
+                {
+                    "name": "Piercing Line",
+                    "features": [
+                        "red_followed_by_green",
+                        "green_gaps_down_closes_above_50_pct_red"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "condition": "oversold_below_30_hooks_upward"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_of_green_candle",
+                        "stop_loss": "below_low_of_green",
+                        "target": "open_of_red_candle"
+                    }
+                },
+                {
+                    "name": "Dark Cloud Cover",
+                    "features": [
+                        "green_followed_by_red",
+                        "red_gaps_up_closes_below_50_pct_green"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume",
+                            "condition": "divergence_declining_on_gap"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_of_red_candle",
+                        "stop_loss": "above_high_red_wick",
+                        "target": "open_of_green_candle"
+                    }
+                },
+                {
+                    "name": "Tweezer Top/Bottom",
+                    "features": [
+                        "identical_highs_or_lows"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI_MACD",
+                            "condition": "divergence_and_crossover"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_of_second_candle",
+                        "stop_loss": "shared_tweezer_level",
+                        "target_rr_ratio": 3.0
+                    }
+                },
+                {
+                    "name": "Kicker",
+                    "features": [
+                        "violent_gap",
+                        "opposite_direction_candles"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "VWAP",
+                            "condition": "sustain_price_beyond_vwap"
+                        }
+                    },
+                    "execution": {
+                        "entry": "market_order_upon_gap_open",
+                        "stop_loss": "gap_origin",
+                        "target": "trailing_stop_ema"
+                    }
+                },
+                {
+                    "name": "Counterattack",
+                    "features": [
+                        "opposite_direction_candles",
+                        "identical_close"
+                    ],
+                    "indicator_confluence": {
+                        "volatility": {
+                            "type": "ATR",
+                            "condition": "first_candle_stretches_beyond_2x_atr"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_second_candle_extreme",
+                        "stop_loss": "extreme_shadow_second_candle",
+                        "target": "50_pct_fibonacci"
+                    }
+                },
+                {
+                    "name": "Separating Lines",
+                    "features": [
+                        "identical_open",
+                        "opposite_direction_second_candle"
+                    ],
+                    "indicator_confluence": {
+                        "trend": {
+                            "type": "SMA_EMA",
+                            "condition": "20_50_200_aligned"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_second_candle",
+                        "stop_loss": "shared_open_price",
+                        "target": "channel_extension_measured_move"
+                    }
+                }
+            ],
+            "multi_candle": [
+                {
+                    "name": "Morning/Evening Star",
+                    "features": [
+                        "long_directional",
+                        "gapped_indecision",
+                        "long_reversal_penetrating"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "MACD",
+                            "condition": "histogram_flip_positive_negative"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_third_candle",
+                        "stop_loss": "extreme_star_candle",
+                        "target": "origin_prior_trend"
+                    }
+                },
+                {
+                    "name": "Three White Soldiers / Black Crows",
+                    "features": [
+                        "three_consecutive_elongated_directional"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "OBV",
+                            "condition": "stair_step_increase"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_third_candle",
+                        "stop_loss": "extreme_first_candle",
+                        "target": "1.618_fib_extension"
+                    }
+                },
+                {
+                    "name": "Abandoned Baby",
+                    "features": [
+                        "doji_gaps_away_from_first_and_third"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "condition": "extreme_divergence_below_20_above_80"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_third_candle",
+                        "stop_loss": "extreme_isolated_doji",
+                        "target": "gap_fill_or_resistance"
+                    }
+                },
+                {
+                    "name": "Three Inside Up/Down & Three Outside",
+                    "features": [
+                        "harami_or_engulfing",
+                        "third_confirming_candle"
+                    ],
+                    "indicator_confluence": {
+                        "trend": {
+                            "type": "Moving Average",
+                            "condition": "short_cross_medium"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_third_candle",
+                        "stop_loss": "extreme_three_candle_cluster",
+                        "target": "next_liquidity_pool"
+                    }
+                },
+                {
+                    "name": "Rising / Falling Three Methods",
+                    "features": [
+                        "long_directional",
+                        "three_small_counter_trend",
+                        "fifth_long_breakout"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume",
+                            "condition": "diminish_corrective_explode_breakout"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_first_candle_extreme",
+                        "stop_loss": "extreme_corrective_candles",
+                        "target": "equal_measured_move"
+                    }
+                },
+                {
+                    "name": "Mat Hold",
+                    "features": [
+                        "bullish_gap_up",
+                        "small_bearish_candles",
+                        "fifth_bullish_breakout"
+                    ],
+                    "indicator_confluence": {
+                        "trend": {
+                            "type": "Trendline_EMA",
+                            "condition": "pullback_to_support_or_20_ema"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_high_gap_up",
+                        "stop_loss": "below_20_ema",
+                        "target": "trailing_stop"
+                    }
+                },
+                {
+                    "name": "Three-Line Strike",
+                    "features": [
+                        "three_directional",
+                        "massive_counter_candle_engulfing_all"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "condition": "reset_to_50"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_above_massive_candle",
+                        "stop_loss": "extreme_massive_candle",
+                        "target": "uptrend_projection"
+                    }
+                },
+                {
+                    "name": "Concealing Baby Swallow",
+                    "features": [
+                        "two_marubozus",
+                        "gap_inverted_hammer",
+                        "engulfing_bearish"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "MFI",
+                            "condition": "bullish_divergence"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_high_engulfing",
+                        "stop_loss": "absolute_low_pattern",
+                        "target": "50_pct_retracement"
+                    }
+                },
+                {
+                    "name": "Ladder Bottom",
+                    "features": [
+                        "three_bearish",
+                        "inverted_hammer",
+                        "bullish_breakout"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "MACD",
+                            "condition": "convergence_trigger_bullish_cross"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_fifth_candle",
+                        "stop_loss": "below_inverted_hammer",
+                        "target": "nearest_supply_zone"
+                    }
+                },
+                {
+                    "name": "Upside Gap Two Crows",
+                    "features": [
+                        "bullish",
+                        "gap_up_small_bearish",
+                        "engulfing_bearish_fails_to_close_gap"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "Stochastic",
+                            "condition": "above_80_cross_downward"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_below_third_close",
+                        "stop_loss": "absolute_high_pattern",
+                        "target": "fill_gap"
+                    }
+                },
+                {
+                    "name": "Tasuki Gap",
+                    "features": [
+                        "gap",
+                        "failed_gap_fill_test_support_resistance"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume",
+                            "condition": "gap_high_volume_correction_low_volume"
+                        }
+                    },
+                    "execution": {
+                        "entry": "support_holds_resume",
+                        "stop_loss": "extreme_edge_gap",
+                        "target": "channel_projection"
+                    }
+                },
+                {
+                    "name": "Stick Sandwich",
+                    "features": [
+                        "bearish",
+                        "bullish",
+                        "bearish_identical_close_as_first"
+                    ],
+                    "indicator_confluence": {
+                        "volatility": {
+                            "type": "Bollinger Bands",
+                            "condition": "reject_lower_band"
+                        }
+                    },
+                    "execution": {
+                        "entry": "open_fourth_candle_gap_higher",
+                        "stop_loss": "sandwich_floor",
+                        "target": "upper_band"
+                    }
+                },
+                {
+                    "name": "Sushi Roll Reversal",
+                    "features": [
+                        "five_narrow_bars",
+                        "five_volatile_engulfing_bars"
+                    ],
+                    "indicator_confluence": {
+                        "volatility": {
+                            "type": "ATR",
+                            "condition": "massive_expansion"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_second_five_bars",
+                        "stop_loss": "opposite_end_volatile",
+                        "target": "macro_trend_reversal"
+                    }
+                }
+            ]
+        },
+        "macro_market_geometry": {
+            "reversal": [
+                {
+                    "name": "Head and Shoulders",
+                    "features": [
+                        "left_shoulder",
+                        "higher_head",
+                        "lower_right_shoulder",
+                        "neckline"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume",
+                            "condition": "divergence_highest_left_lowest_right"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_below_neckline",
+                        "stop_loss": "above_right_shoulder",
+                        "target": "head_to_neckline_projected"
+                    }
+                },
+                {
+                    "name": "Double Top / Bottom",
+                    "features": [
+                        "m_or_w_shape",
+                        "twice_tested_barrier"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "condition": "divergence"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_intervening_swing",
+                        "stop_loss": "extreme_peaks",
+                        "target": "pattern_height"
+                    }
+                },
+                {
+                    "name": "Triple Top / Bottom",
+                    "features": [
+                        "three_distinct_tests"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "MACD",
+                            "condition": "histogram_weakening_across_tests"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_baseline",
+                        "stop_loss": "inside_boundary",
+                        "target": "distance_peaks_to_baseline"
+                    }
+                },
+                {
+                    "name": "Adam & Eve",
+                    "features": [
+                        "v_shape_capitulation",
+                        "u_shape_exhausted_retest"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume",
+                            "condition": "adam_spikes_eve_subdued"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_past_confirmation",
+                        "stop_loss": "extreme_eve",
+                        "target": "pattern_height"
+                    }
+                },
+                {
+                    "name": "Rounding Top / Bottom",
+                    "features": [
+                        "u_shape_gradual"
+                    ],
+                    "indicator_confluence": {
+                        "trend": {
+                            "type": "Moving Average",
+                            "condition": "50_cross_200_golden_death_cross"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_rim",
+                        "stop_loss": "last_higher_low",
+                        "target": "base_depth_added_to_rim"
+                    }
+                },
+                {
+                    "name": "Diamond Top / Bottom",
+                    "features": [
+                        "broadening_expanding",
+                        "symmetrical_contracting"
+                    ],
+                    "indicator_confluence": {
+                        "volatility": {
+                            "type": "ATR",
+                            "condition": "expand_left_compress_right"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_final_trendline",
+                        "stop_loss": "recent_swing_high",
+                        "target": "widest_part"
+                    }
+                },
+                {
+                    "name": "Bump and Run",
+                    "features": [
+                        "steepened_trendline_bump",
+                        "break_original"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "condition": ">80_or_85"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_original_trendline",
+                        "stop_loss": "peak_bump",
+                        "target": "origin_bump"
+                    }
+                },
+                {
+                    "name": "Pipe Bottom / Top",
+                    "features": [
+                        "two_adjacent_elongated_opposite"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume",
+                            "condition": "climax_highest_quarter"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_extreme_second",
+                        "stop_loss": "extreme_longer",
+                        "target_rr_ratio": 2.0
+                    }
+                },
+                {
+                    "name": "Dragon Pattern",
+                    "features": [
+                        "head",
+                        "two_feet",
+                        "hump"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "Fibonacci_RSI",
+                            "condition": "38.2_first_foot_61.8_78.6_second_foot_rsi_divergence"
+                        }
+                    },
+                    "execution": {
+                        "entry": "break_descending_trendline",
+                        "stop_loss": "lowest_foot",
+                        "target": [
+                            "hump",
+                            "head",
+                            "1.27_extension"
+                        ]
+                    }
+                }
+            ],
+            "continuation": [
+                {
+                    "name": "Bull / Bear Flags",
+                    "features": [
+                        "flagpole",
+                        "parallel_counter_trend_channel"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume",
+                            "condition": "contraction_during_flag_explode_breakout"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_close",
+                        "stop_loss": "boundary_or_higher_low",
+                        "target": "flagpole_height"
+                    }
+                },
+                {
+                    "name": "Ascending Triangle",
+                    "features": [
+                        "flat_resistance",
+                        "rising_lower_trendline"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "OBV",
+                            "condition": "trending_upwards"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_above_resistance",
+                        "stop_loss": "recent_rising_swing_low",
+                        "target": "triangle_height"
+                    }
+                },
+                {
+                    "name": "Descending Triangle",
+                    "features": [
+                        "flat_support",
+                        "declining_upper_trendline"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "MACD",
+                            "condition": "below_zero"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_below_support",
+                        "stop_loss": "recent_lower_high",
+                        "target": "triangle_height"
+                    }
+                },
+                {
+                    "name": "Rectangles",
+                    "features": [
+                        "horizontal_parallel_boundaries"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "Stochastic",
+                            "condition": "overbought_oversold_oscillation"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_retest",
+                        "stop_loss": "inside_boundary",
+                        "target": "rectangle_height"
+                    }
+                },
+                {
+                    "name": "Cup and Handle",
+                    "features": [
+                        "rounded_bottom_cup",
+                        "downward_drifting_handle"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume Profile",
+                            "condition": "declines_descent_rises_recovery_decreases_handle_spikes_breakout"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_handle",
+                        "stop_loss": "lowest_handle",
+                        "target": "cup_depth"
+                    }
+                },
+                {
+                    "name": "Measured Moves",
+                    "features": [
+                        "impulse",
+                        "corrective_consolidation",
+                        "secondary_impulse"
+                    ],
+                    "indicator_confluence": {
+                        "trend": {
+                            "type": "Fibonacci",
+                            "condition": "corrective_terminates_38.2_or_50"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_mid_pattern",
+                        "stop_loss": "extreme_corrective",
+                        "target": "100_pct_first_leg"
+                    }
+                }
+            ],
+            "bilateral": [
+                {
+                    "name": "Symmetrical Triangles",
+                    "features": [
+                        "converging_trendlines",
+                        "apex"
+                    ],
+                    "indicator_confluence": {
+                        "volatility": {
+                            "type": "ATR",
+                            "condition": "multi_month_lows"
+                        }
+                    },
+                    "execution": {
+                        "entry": "confirmed_3_pct_close_outside",
+                        "stop_loss": "inside_opposite_trendline",
+                        "target": "base_width"
+                    }
+                },
+                {
+                    "name": "Wedges",
+                    "features": [
+                        "trendlines_slope_same_direction_converge"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "RSI",
+                            "condition": "divergence"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_beyond_counter_trend",
+                        "stop_loss": "last_swing_high",
+                        "target": "origin_wedge"
+                    }
+                },
+                {
+                    "name": "Broadening Formations",
+                    "features": [
+                        "diverging_trendlines",
+                        "higher_highs_lower_lows"
+                    ],
+                    "indicator_confluence": {
+                        "volume": {
+                            "type": "Volume",
+                            "condition": "erratic_increases_spikes"
+                        }
+                    },
+                    "execution": {
+                        "entry": "breakout_final_trendline",
+                        "stop_loss": "recent_swing_outside",
+                        "target": "pattern_height"
+                    }
+                },
+                {
+                    "name": "Ascending/Descending Broadening Wedges",
+                    "features": [
+                        "diverging_trendlines_sloped"
+                    ],
+                    "indicator_confluence": {
+                        "momentum": {
+                            "type": "MACD",
+                            "condition": "histogram_fails_to_confirm_extremes_divergence"
+                        }
+                    },
+                    "execution": {
+                        "entry": "close_outside_opposing_trendline",
+                        "stop_loss": "highest_lowest_inside",
+                        "target": "origin"
+                    }
+                }
+            ]
+        },
+        "harmonics": [
+            {
+                "name": "Gartley",
+                "ratios": {
+                    "B": "61.8_pct_XA",
+                    "C": [
+                        "38.2_pct_AB",
+                        "88.6_pct_AB"
+                    ],
+                    "D_PRZ": "78.6_pct_XA"
+                }
+            },
+            {
+                "name": "Bat",
+                "ratios": {
+                    "B": [
+                        "38.2_pct_XA",
+                        "50.0_pct_XA"
+                    ],
+                    "C": [
+                        "38.2_pct_AB",
+                        "88.6_pct_AB"
+                    ],
+                    "D_PRZ": "88.6_pct_XA"
+                }
+            },
+            {
+                "name": "Butterfly",
+                "ratios": {
+                    "B": "78.6_pct_XA",
+                    "C": [
+                        "38.2_pct_AB",
+                        "88.6_pct_AB"
+                    ],
+                    "D_PRZ": "127.2_pct_XA_extension"
+                }
+            },
+            {
+                "name": "Crab",
+                "ratios": {
+                    "B": [
+                        "38.2_pct_XA",
+                        "61.8_pct_XA"
+                    ],
+                    "C": [
+                        "38.2_pct_AB",
+                        "88.6_pct_AB"
+                    ],
+                    "D_PRZ": "161.8_pct_XA_extension"
+                }
+            },
+            {
+                "name": "Deep Crab",
+                "ratios": {
+                    "B": "88.6_pct_XA",
+                    "C": [
+                        "38.2_pct_AB",
+                        "88.6_pct_AB"
+                    ],
+                    "D_PRZ": "161.8_pct_XA_extension"
+                }
+            },
+            {
+                "name": "Shark",
+                "ratios": {
+                    "B": [
+                        "113_pct_AB",
+                        "161.8_pct_AB"
+                    ],
+                    "D_PRZ": "88.6_pct_OX"
+                }
+            },
+            {
+                "name": "5-0 Pattern",
+                "ratios": {
+                    "B": [
+                        "113_pct_XA",
+                        "161.8_pct_XA"
+                    ],
+                    "C": [
+                        "161.8_pct_AB",
+                        "224_pct_AB"
+                    ],
+                    "D_PRZ": "50_pct_BC"
+                }
+            },
+            {
+                "name": "Cypher",
+                "ratios": {
+                    "B": [
+                        "38.2_pct_XA",
+                        "61.8_pct_XA"
+                    ],
+                    "C": [
+                        "127.2_pct_XA",
+                        "141.4_pct_XA"
+                    ],
+                    "D_PRZ": "78.6_pct_XC"
+                }
+            },
+            {
+                "name": "AB=CD",
+                "ratios": {
+                    "C": [
+                        "61.8_pct_AB",
+                        "78.6_pct_AB"
+                    ],
+                    "D_PRZ": [
+                        "127.2_pct_BC",
+                        "161.8_pct_BC"
+                    ]
+                }
+            },
+            {
+                "name": "Three Drives",
+                "ratios": {
+                    "drives_2_3": [
+                        "127.2_pct",
+                        "161.8_pct_extensions"
+                    ]
+                }
+            }
+        ],
+        "exotic_wyckoff": [
+            {
+                "name": "Wolfe Waves",
+                "indicator_confluence": {
+                    "momentum": {
+                        "type": "MACD_RSI",
+                        "condition": "divergence_during_wave_5"
+                    }
+                },
+                "execution": {
+                    "entry": "re_enter_primary_channel",
+                    "target": "EPA_trendline_point_1_point_4"
+                }
+            },
+            {
+                "name": "Wyckoff Accumulation",
+                "phases": [
+                    "PS",
+                    "SC",
+                    "AR",
+                    "ST",
+                    "Spring",
+                    "SOS",
+                    "LPS"
+                ],
+                "indicator_confluence": {
+                    "volume": {
+                        "type": "Volume_OBV",
+                        "condition": "spike_during_climaxes_contract_during_tests"
+                    }
+                }
+            },
+            {
+                "name": "Wyckoff Distribution",
+                "phases": [
+                    "PSY",
+                    "BC",
+                    "AR",
+                    "ST",
+                    "UTAD",
+                    "SOW",
+                    "LPSY"
+                ],
+                "indicator_confluence": {
+                    "volume": {
+                        "type": "Volume_OBV",
+                        "condition": "spike_during_climaxes_contract_during_tests"
+                    }
+                }
+            }
+        ]
+    }
+}

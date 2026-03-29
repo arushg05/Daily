@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* ── Asymptote Design Tokens ─────────────────────────────────── */
+@theme {
+  --color-surface-900: #09090b;
+  --color-surface-800: #18181b;
+  --color-surface-700: #27272a;
+  --color-surface-600: #3f3f46;
+
+  --color-neon-green: #00ff87;
+  --color-neon-green-dim: #00ff8733;
+  --color-neon-red: #ff3b5c;
+  --color-neon-red-dim: #ff3b5c33;
+  --color-neon-amber: #fbbf24;
+  --color-neon-amber-dim: #fbbf2433;
+  --color-neon-blue: #38bdf8;
+
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #71717a;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Global Base ─────────────────────────────────────────────── */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--color-surface-900);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-surface-600); border-radius: 3px; }
+
+/* ── Glassmorphism utility ───────────────────────────────────── */
+.glass {
+  background: rgba(24, 24, 27, 0.60);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(63, 63, 70, 0.4);
+}
+
+/* ── Glow effects ────────────────────────────────────────────── */
+.glow-green  { box-shadow: 0 0 20px var(--color-neon-green-dim), inset 0 0 20px rgba(0,255,135,0.03); }
+.glow-red    { box-shadow: 0 0 20px var(--color-neon-red-dim), inset 0 0 20px rgba(255,59,92,0.03); }
+.glow-amber  { box-shadow: 0 0 20px var(--color-neon-amber-dim), inset 0 0 20px rgba(251,191,36,0.03); }
+
+/* ── Score gauge bar ─────────────────────────────────────────── */
+.score-bar {
+  height: 4px;
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Row hover micro-animation ───────────────────────────────── */
+.setup-row {
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.setup-row:hover {
+  transform: translateX(4px);
+  background: rgba(63, 63, 70, 0.25);
+}
+
+/* ── Fade-in animation ───────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* ── Pulse animation for live indicator ──────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}

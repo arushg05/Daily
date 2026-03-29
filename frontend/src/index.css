@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/* ── Asymptote-LT Design Tokens ─────────────────────────────── */
+@theme {
+  --color-surface-950: #030712;
+  --color-surface-900: #09090b;
+  --color-surface-850: #111113;
+  --color-surface-800: #18181b;
+  --color-surface-700: #27272a;
+  --color-surface-600: #3f3f46;
+  --color-surface-500: #52525b;
+
+  --color-neon-green: #00ff87;
+  --color-neon-green-dim: rgba(0, 255, 135, 0.15);
+  --color-neon-red: #ff3b5c;
+  --color-neon-red-dim: rgba(255, 59, 92, 0.15);
+  --color-neon-amber: #fbbf24;
+  --color-neon-amber-dim: rgba(251, 191, 36, 0.15);
+  --color-neon-blue: #38bdf8;
+  --color-neon-blue-dim: rgba(56, 189, 248, 0.15);
+  --color-neon-purple: #a78bfa;
+  --color-neon-purple-dim: rgba(167, 139, 250, 0.15);
+
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #71717a;
+  --color-text-dim: #52525b;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ── Global Base ─────────────────────────────────────────────── */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--color-surface-950);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-600);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-surface-500); }
+
+/* ── Glassmorphism utility ───────────────────────────────────── */
+.glass {
+  background: rgba(9, 9, 11, 0.70);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid rgba(63, 63, 70, 0.35);
+}
+
+.glass-light {
+  background: rgba(24, 24, 27, 0.50);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(63, 63, 70, 0.25);
+}
+
+/* ── Glow effects ────────────────────────────────────────────── */
+.glow-green  { box-shadow: 0 0 24px var(--color-neon-green-dim), inset 0 0 24px rgba(0,255,135,0.04); }
+.glow-red    { box-shadow: 0 0 24px var(--color-neon-red-dim), inset 0 0 24px rgba(255,59,92,0.04); }
+.glow-amber  { box-shadow: 0 0 24px var(--color-neon-amber-dim), inset 0 0 24px rgba(251,191,36,0.04); }
+.glow-blue   { box-shadow: 0 0 24px var(--color-neon-blue-dim), inset 0 0 24px rgba(56,189,248,0.04); }
+
+/* ── Score gauge bar ─────────────────────────────────────────── */
+.score-bar {
+  height: 3px;
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Row hover micro-animation ───────────────────────────────── */
+.setup-row {
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.setup-row:hover {
+  transform: translateX(3px);
+  background: rgba(63, 63, 70, 0.2);
+}
+
+/* ── Fade-in animation ───────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.35s ease forwards;
+  opacity: 0;
+}
+
+/* ── Slide-in from left ──────────────────────────────────────── */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in {
+  animation: slideInLeft 0.4s ease forwards;
+  opacity: 0;
+}
+
+/* ── Pulse animation for live indicator ──────────────────────── */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+.pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+/* ── Badge styles ────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.badge-green {
+  background: var(--color-neon-green-dim);
+  color: var(--color-neon-green);
+}
+.badge-red {
+  background: var(--color-neon-red-dim);
+  color: var(--color-neon-red);
+}
+.badge-amber {
+  background: var(--color-neon-amber-dim);
+  color: var(--color-neon-amber);
+}
+.badge-blue {
+  background: var(--color-neon-blue-dim);
+  color: var(--color-neon-blue);
+}
+.badge-purple {
+  background: var(--color-neon-purple-dim);
+  color: var(--color-neon-purple);
+}
+
+/* ── Timeframe toggle ────────────────────────────────────────── */
+.tf-btn {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.tf-btn:hover {
+  color: var(--color-text-secondary);
+  background: rgba(63, 63, 70, 0.25);
+}
+.tf-btn-active {
+  color: var(--color-neon-blue);
+  background: var(--color-neon-blue-dim);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+/* ── Shimmer loading ─────────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(63,63,70,0.3) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ── Gradient text ───────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-neon-blue), var(--color-neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

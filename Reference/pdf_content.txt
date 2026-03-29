@@ -1,0 +1,2283 @@
+Comprehensive Algorithmic and 
+Discretionary Mapping of Price Action: 
+An Exhaustive Taxonomy of Candlestick, 
+Chart, and Harmonic Patterns with 
+Indicator Confluence 
+Financial market analysis relies heavily on the empirical study of price action, wherein the 
+collective psychology of market participants is permanently recorded in the form of geometric 
+chart structures and candlestick formations.1 Over decades of market observation, beginning 
+with the foundational theories of Charles Dow and Japanese rice merchants, technical analysts 
+have codified these historical footprints into a vast taxonomy of patterns that forecast trend 
+continuations, bilateral indeterminacies, and macroeconomic reversals.1 However, isolated 
+pattern recognition is inherently susceptible to false signals, market noise, and institutional 
+manipulation. To achieve a statistical edge and robust risk management, these structural 
+patterns must be systematically mapped against empirical technical indicators—specifically 
+those measuring momentum, volume, volatility, and trend strength.5 
+The premise of this analysis is to provide an exhaustive, encyclopedic detailing of all identified 
+candlestick patterns, classical chart geometries, exotic formations, advanced Fibonacci-based 
+harmonic structures, and complex market cycle frameworks (such as Wyckoff Theory). 
+Furthermore, it defines the precise technical conditions, indicator confluences, and execution 
+rules required to trade them systematically, neutralizing emotional bias through strict algorithmic 
+parameters. 
+The Epistemology of Candlestick Formations and 
+Indicator Confluence 
+Candlesticks serve as the atomic units of price action, capturing the open, high, low, and close 
+of an asset within a defined temporal period.8 The relationship between the real body (the 
+open-to-close range) and the shadows or wicks (the intraday extremes) reveals the immediate 
+balance of power between buyers and sellers.6 Candlestick patterns are broadly categorized 
+into single, dual, and multi-candle formations, each carrying bullish, bearish, or 
+neutral/indecision biases. 
+Trading raw candlestick patterns in isolation is statistically suboptimal and exposes capital to 
+unnecessary drawdown.11 Rigorous execution methodologies demand indicator confluence to 
+filter false signals and measure the underlying market physics. For instance, moving averages 
+
+================================================================================
+establish the baseline trend context, momentum oscillators like the Relative Strength Index 
+(RSI) or Stochastic Oscillator quantify overbought or oversold exhaustion, and volume indicators 
+such as On-Balance Volume (OBV) or the MACD histogram validate institutional participation.12 
+When a candlestick pattern aligns perfectly with its complementary technical indicator, the 
+probability of a successful trade increases exponentially.5 
+Single-Candle Formations: Identifying Immediate Psychological Shifts 
+Single candlestick patterns provide immediate, short-term insights into market psychology. They 
+are most effective when occurring at established support or resistance zones, trendlines, or 
+moving averages, and must be confirmed by momentum oscillators to validate the exhaustion of 
+the prior trend.6 The following table details the exhaustive list of single-candle patterns, their 
+structural definitions, their optimal indicator pairings, and the precise conditions required for 
+trade execution. 
+ 
+Pattern Name 
+Structural 
+Definition 
+Optimal Indicator 
+Confluence 
+Execution 
+Conditions (Entry, 
+Stop Loss, Target) 
+Marubozu 
+(Bullish/Bearish) 
+An elongated real 
+body with virtually 
+no upper or lower 
+shadows, indicating 
+absolute dominance 
+by one side from 
+the open to the 
+close.16 
+Volume (OBV) & 
+Moving Averages 
+(SMA). Requires 
+volume > 150% of 
+the 20-day average 
+to confirm 
+institutional 
+backing.18 
+Entry: Market order 
+on the close of the 
+candle. Stop Loss: 
+Placed exactly at 
+the opposite 
+extreme of the 
+Marubozu body. 
+Target: Next major 
+structural 
+support/resistance 
+level.1 
+Doji (Standard) 
+Opening and 
+closing prices are 
+virtually identical, 
+resulting in a 
+cross-like shape 
+representing 
+absolute market 
+equilibrium and 
+indecision.15 
+RSI. A Doji alone is 
+neutral, but highly 
+predictive if the RSI 
+is at extreme levels 
+(>70 or <30), 
+signaling trend 
+exhaustion.5 
+Entry: Pending stop 
+order placed 
+above/below the 
+Doji's high/low, 
+triggered by the 
+subsequent candle. 
+Stop Loss: 
+Opposite end of the 
+Doji wick. Target: 
+1.5x to 2x the ATR 
+
+================================================================================
+(Average True 
+Range).5 
+Long-Legged Doji 
+Similar to a 
+standard Doji but 
+features 
+exceptionally long 
+upper and lower 
+shadows, indicating 
+extreme intraday 
+volatility with no net 
+directional 
+progress.15 
+Bollinger Bands. 
+Highly effective 
+when the long 
+shadows pierce the 
+outer Bollinger 
+Bands and close 
+back inside, 
+indicating volatility 
+exhaustion.12 
+Entry: Confirmation 
+close of the next 
+candle back inside 
+the band. Stop 
+Loss: At the 
+extreme of the wick 
+that pierced the 
+band. Target: The 
+moving average 
+baseline (center 
+band).21 
+Dragonfly Doji 
+A Doji with a long 
+lower shadow and 
+no upper shadow. 
+Open, high, and 
+close are identical. 
+Indicates 
+aggressive rejection 
+of lower prices.8 
+Stochastic 
+Oscillator. Best 
+utilized when the 
+Stochastic lines 
+cross upward while 
+below the 20 level 
+(oversold).12 
+Entry: Buy on the 
+break of the 
+Dragonfly's high. 
+Stop Loss: Below 
+the extreme lower 
+wick. Target: Next 
+Fibonacci 
+retracement level.21 
+Gravestone Doji 
+A Doji with a long 
+upper shadow and 
+no lower shadow. 
+Indicates an early 
+rally that was 
+aggressively sold 
+off by bears.15 
+MACD. Validated 
+when the MACD 
+histogram begins to 
+decline from a peak 
+or the MACD line 
+crosses below the 
+signal line.12 
+Entry: Sell short on 
+the break of the 
+Gravestone's low. 
+Stop Loss: Above 
+the extreme upper 
+wick. Target: 
+Previous swing 
+low.12 
+Spinning Top 
+A small real body 
+centered between 
+relatively long, 
+symmetrical upper 
+and lower shadows. 
+Denotes a fierce 
+battle resulting in a 
+stalemate.10 
+RSI Divergence. 
+Useful when a 
+Spinning Top forms 
+while price makes a 
+new high/low, but 
+RSI fails to confirm, 
+indicating waning 
+momentum.5 
+Entry: Wait for the 
+next directional 
+candle to close 
+outside the 
+Spinning Top's 
+range. Stop Loss: 
+Beyond the 
+Spinning Top's 
+extreme wick. 
+
+================================================================================
+Target: 2:1 
+Reward-to-Risk 
+ratio.5 
+High-Wave Candle 
+An exaggerated 
+Spinning Top with 
+extremely long 
+shadows, signifying 
+heightened market 
+uncertainty and a 
+potential violent 
+direction change.20 
+ATR (Average True 
+Range). An 
+expansion in ATR 
+validates the high 
+volatility 
+environment, 
+requiring wider 
+execution 
+parameters.7 
+Entry: Breakout of 
+the High-Wave's 
+total range. Stop 
+Loss: Must be 
+placed beyond the 
+opposite extreme, 
+requiring reduced 
+position sizing due 
+to range size. 
+Target: Measured 
+move of the prior 
+trend.7 
+Hammer 
+Small real body at 
+the upper end of the 
+trading range with a 
+long lower shadow 
+(at least twice the 
+body length). A 
+bullish reversal 
+signal at downtrend 
+bottoms.8 
+Moving Average 
+(200-day) & 
+Volume. A Hammer 
+is geometrically 
+validated if it prints 
+directly on a major 
+SMA with volume 
+>150% average.5 
+Entry: Buy 
+immediately on the 
+close of the 
+Hammer or break of 
+its high. Stop Loss: 
+Just below the tip of 
+the lower shadow. 
+Target: 50-day 
+SMA or prior swing 
+high.18 
+Hanging Man 
+Structurally identical 
+to the Hammer but 
+appears at the apex 
+of an uptrend, 
+serving as a bearish 
+warning that sellers 
+are testing the 
+market.8 
+Volume Indicator 
+(MFI). The Money 
+Flow Index should 
+show bearish 
+divergence (price 
+makes a higher 
+high, MFI makes a 
+lower high).24 
+Entry: Sell short 
+when the following 
+candle closes below 
+the Hanging Man's 
+real body. Stop 
+Loss: Above the 
+high of the Hanging 
+Man. Target: Base 
+of the prior bullish 
+impulse leg.8 
+Inverted Hammer 
+Occurs in a 
+downtrend. 
+Features a small 
+MACD Histogram. 
+The bearish 
+momentum on the 
+Entry: Buy when 
+the next candle 
+clears the high of 
+
+================================================================================
+real body at the 
+lower end of the 
+range and a long 
+upper shadow, 
+suggesting buyers 
+attempted to push 
+prices higher.6 
+histogram must be 
+visibly shrinking 
+(bars getting 
+shorter) as the 
+Inverted Hammer 
+forms.12 
+the Inverted 
+Hammer's real 
+body. Stop Loss: 
+Below the low of the 
+pattern. Target: 
+Nearest resistance 
+zone.8 
+Shooting Star 
+Occurs in an 
+uptrend. Small real 
+body at the lower 
+end of the range 
+with a long upper 
+shadow, showing an 
+early rally was 
+aggressively sold 
+off.6 
+RSI (Overbought). 
+Execution is optimal 
+when the Shooting 
+Star coincides with 
+an RSI reading 
+above 70.19 
+Entry: Sell short 
+when the next 
+candle breaks the 
+low of the Shooting 
+Star. Stop Loss: 
+Above the extreme 
+upper shadow. 
+Target: The 20-day 
+or 50-day EMA.7 
+Belt Hold 
+(Bullish/Bearish) 
+A single candle that 
+opens at the 
+extreme low 
+(bullish) or high 
+(bearish) of the day 
+and closes near the 
+opposite end, with 
+no shadow at the 
+opening price.8 
+Trendline 
+Confluence. The 
+pattern must 
+perfectly reject a 
+mathematically 
+drawn ascending or 
+descending 
+trendline.5 
+Entry: Enter in the 
+direction of the Belt 
+Hold body on the 
+close. Stop Loss: 
+Placed beyond the 
+flat opening price. 
+Target: Opposite 
+boundary of the 
+trend channel.5 
+Dual-Candle Formations: Momentum Shifts and Structural Barriers 
+Two-candle patterns reflect an immediate, undeniable shift in momentum from one session to 
+the next. By analyzing the interaction between the two real bodies, analysts can deduce 
+whether accumulation is overtaking distribution, or vice versa. The reliability of dual-candle 
+patterns is significantly higher than single-candle patterns, as they inherently contain a measure 
+of confirmation within their structure. 
+ 
+Pattern Name 
+Structural 
+Definition 
+Optimal Indicator 
+Confluence 
+Execution 
+Conditions (Entry, 
+Stop Loss, Target) 
+Engulfing 
+A potent reversal 
+MACD Crossover 
+Entry: On the close 
+
+================================================================================
+(Bullish/Bearish) 
+where the second 
+candle's real body 
+completely 
+obscures the 
+preceding candle's 
+real body, signifying 
+total capitulation by 
+the opposing side.6 
+& Volume. A Bullish 
+Engulfing is 
+validated by an 
+MACD line crossing 
+above the signal 
+line and volume 
+>150% average.5 
+of the engulfing 
+candle. Stop Loss: 
+Below/above the 
+extreme of the 
+engulfing candle. 
+Target: Measured 
+move equal to the 
+height of the prior 
+trend leg.18 
+Harami 
+(Bullish/Bearish) 
+The inverse of the 
+engulfing pattern. 
+The first candle is 
+abnormally large, 
+and the second is 
+diminutive, fitting 
+entirely within the 
+bounds of the first, 
+signaling 
+momentum loss.8 
+Stochastic 
+Oscillator. Effective 
+when the Stochastic 
+lines cross within 
+the 
+overbought/oversol
+d regions during the 
+formation of the 
+second, smaller 
+candle.12 
+Entry: Breakout of 
+the Harami's 
+second candle 
+range. Stop Loss: 
+Beyond the extreme 
+of the first (large) 
+candle. Target: 
+Next major 
+support/resistance 
+level.8 
+Harami Cross 
+A Harami pattern 
+where the second 
+candle is a precise 
+Doji, intensifying the 
+indecision and 
+increasing the 
+probability of a 
+sharp reversal.17 
+Bollinger Band 
+Squeeze. The 
+pattern often 
+precedes an 
+explosive move if it 
+forms during a 
+contraction of the 
+Bollinger Bands.12 
+Entry: Pending 
+order placed 
+outside the Doji's 
+range. Stop Loss: 
+Beyond the first 
+candle's extreme. 
+Target: Opposite 
+outer Bollinger 
+Band.12 
+Piercing Line 
+A bullish reversal 
+where a strong red 
+candle is followed 
+by a green candle 
+that gaps down but 
+closes above the 
+50% midpoint of the 
+prior red body.8 
+RSI Oversold. The 
+gap down pushes 
+RSI below 30, and 
+the aggressive 
+close above the 
+50% midpoint 
+initiates an RSI 
+hook upward.5 
+Entry: Buy on the 
+close of the piercing 
+green candle. Stop 
+Loss: Below the 
+absolute low of the 
+green candle. 
+Target: The 
+opening price of the 
+preceding red 
+candle.8 
+
+================================================================================
+Dark Cloud Cover 
+A bearish reversal 
+where a strong 
+green candle is 
+followed by a red 
+candle that gaps up 
+but closes below 
+the 50% midpoint of 
+the green body.8 
+Volume 
+Divergence. The 
+initial green candle 
+features high 
+volume, but the gap 
+up occurs on 
+declining volume, 
+showing lack of 
+buyer conviction.6 
+Entry: Sell short on 
+the close of the red 
+candle. Stop Loss: 
+Above the high of 
+the red candle's 
+wick. Target: The 
+opening price of the 
+preceding green 
+candle.8 
+Tweezer 
+Top/Bottom 
+Two adjacent 
+candles that share 
+identical highs 
+(Tweezer Top) or 
+identical lows 
+(Tweezer Bottom), 
+indicating a hard 
+structural barrier the 
+market refuses to 
+penetrate.8 
+RSI Divergence & 
+MACD. A Tweezer 
+Bottom is highly 
+predictive if price 
+makes equal lows 
+while RSI makes a 
+higher low, 
+confirmed by a 
+MACD bullish 
+crossover.5 
+Entry: Long/short 
+immediately 
+following the close 
+of the second 
+candle. Stop Loss: 
+Exactly at the 
+shared Tweezer 
+level. Target: 3x the 
+risk parameters (3:1 
+RR).5 
+Kicker 
+(Bullish/Bearish) 
+A violent reversal 
+featuring a massive 
+gap. A Bullish 
+Kicker has a strong 
+bearish candle 
+followed by a strong 
+bullish candle that 
+opens above the 
+prior day's high.8 
+VWAP (Volume 
+Weighted Average 
+Price). The second 
+candle must open 
+and sustain price 
+completely 
+above/below the 
+VWAP, indicating 
+institutional 
+urgency.7 
+Entry: Market order 
+immediately upon 
+the gap open. Stop 
+Loss: Placed at the 
+gap's origin (the 
+close of the first 
+candle). Target: 
+Trailing stop using 
+an EMA.7 
+Counterattack 
+(Meeting Lines) 
+A bearish candle 
+and a bullish candle 
+that open at 
+opposite extremes 
+but close at the 
+exact same price 
+level, signaling a 
+sudden halt to the 
+prevailing trend.8 
+ATR Limits. 
+Validated when the 
+first candle 
+stretches price 
+beyond 2x the 
+standard ATR, 
+representing an 
+unsustainable 
+overextension.7 
+Entry: On the break 
+of the second 
+candle's high/low. 
+Stop Loss: Beyond 
+the extreme shadow 
+of the second 
+candle. Target: 
+50% Fibonacci 
+retracement of the 
+prior trend.8 
+
+================================================================================
+Separating Lines 
+A continuation 
+pattern where the 
+second candle 
+opens at the exact 
+same price as the 
+first candle but 
+moves in the 
+opposite direction, 
+resuming the 
+dominant trend.8 
+Moving Average 
+Alignment. Must 
+occur in a market 
+where the 20-EMA, 
+50-SMA, and 
+200-SMA are 
+fanned out in 
+perfect directional 
+alignment.7 
+Entry: On the close 
+of the second 
+candle. Stop Loss: 
+Below/above the 
+shared opening 
+price. Target: 
+Channel extension 
+or measured move.8 
+Multi-Candle Formations: Complex Structural Transitions 
+Complex patterns involving three or more candles capture intricate structural shifts and offer the 
+highest probabilistic reliability among candlestick signals. These formations represent a 
+multi-phase transition in market psychology, mapping the exact sequence of trend exhaustion, 
+indecision, and subsequent directional initiation. 
+ 
+Pattern Name 
+Structural 
+Definition 
+Optimal Indicator 
+Confluence 
+Execution 
+Conditions (Entry, 
+Stop Loss, Target) 
+Morning Star / 
+Evening Star 
+A three-candle 
+reversal. The 
+Morning Star 
+(bullish) consists of 
+a long bearish 
+candle, a 
+gapped-down small 
+indecision candle, 
+and a long bullish 
+candle penetrating 
+deeply into the 
+first.8 
+MACD Histogram 
+Momentum. The 
+histogram must 
+show extreme 
+bearish momentum 
+on the first candle, 
+flattening on the 
+second, and flipping 
+positive on the 
+third.5 
+Entry: Buy/sell on 
+the close of the third 
+candle. Stop Loss: 
+Below/above the 
+extreme of the 
+middle (star) 
+candle. Target: 
+Reversal to the 
+origin of the prior 
+trend leg.8 
+Three White 
+Soldiers / Three 
+Black Crows 
+Continuation or 
+reversal indicators 
+consisting of three 
+consecutive, 
+elongated 
+directional candles 
+Volume Trend 
+(OBV). Requires a 
+consistent, 
+stair-step increase 
+in On-Balance 
+Volume across all 
+Entry: On the close 
+of the third candle. 
+Stop Loss: Below 
+the low of the first 
+candle in the 
+sequence. Target: 
+
+================================================================================
+with minimal wicks, 
+stepping 
+consistently upward 
+or downward.8 
+three candles, 
+confirming 
+institutional 
+accumulation/distrib
+ution.6 
+Measured move of 
+1.618 Fibonacci 
+extension.8 
+Abandoned Baby 
+(Bullish/Bearish) 
+An exceptionally 
+rare variant of the 
+Morning/Evening 
+Star where the 
+middle Doji gaps 
+away from both the 
+first and third 
+candles, leaving its 
+shadows completely 
+isolated.8 
+RSI Extreme 
+Divergence. 
+Occurs during 
+capitulation events 
+where RSI drops 
+below 20 (bullish) or 
+spikes above 80 
+(bearish).19 
+Entry: On the close 
+of the third candle. 
+Stop Loss: The 
+absolute extreme of 
+the isolated Doji. 
+Target: Complete 
+gap fill or structural 
+resistance.8 
+Three Inside 
+Up/Down & Three 
+Outside Up/Down 
+Confirmation 
+patterns. Three 
+Inside Up is a 
+Bullish Harami 
+followed by a third 
+bullish candle 
+closing higher. 
+Three Outside Up is 
+a Bullish Engulfing 
+followed by a higher 
+close.8 
+Moving Average 
+Cross. Often 
+coincides with a 
+short-term moving 
+average (e.g., 
+9-EMA) crossing 
+over a medium-term 
+average (e.g., 
+20-EMA).7 
+Entry: On the close 
+of the third 
+confirming candle. 
+Stop Loss: Below 
+the lowest point of 
+the three-candle 
+cluster. Target: 
+Next major liquidity 
+pool.8 
+Rising / Falling 
+Three Methods 
+A five-candle 
+continuation. A long 
+directional candle is 
+followed by three 
+small counter-trend 
+candles within its 
+range, and 
+concludes with a 
+fifth long directional 
+candle breaking to a 
+new high/low.8 
+Volume 
+Contraction/Expan
+sion. Volume must 
+diminish during the 
+three small 
+corrective candles 
+and explode on the 
+fifth breakout 
+candle.18 
+Entry: On the 
+breakout of the first 
+candle's high/low by 
+the fifth candle. 
+Stop Loss: Below 
+the lowest point of 
+the corrective 
+candles. Target: 
+Equal measured 
+move of the first 
+candle.8 
+Mat Hold 
+Similar to the Rising 
+Trendline Support. 
+Entry: When the 
+
+================================================================================
+Three Methods, but 
+the initial bullish 
+candle is followed 
+by a gap up, and 
+the small bearish 
+candles do not dip 
+deeply into the first 
+candle's body.8 
+The three corrective 
+candles typically 
+pull back exactly to 
+a rising support 
+trendline or a 
+20-period EMA.5 
+fifth candle breaks 
+the high of the initial 
+gap up. Stop Loss: 
+Below the 20-EMA. 
+Target: Continuous 
+trailing stop.8 
+Three-Line Strike 
+A four-candle 
+continuation. Three 
+consecutive green 
+candles are 
+followed by a 
+massive red candle 
+that opens higher 
+but closes below 
+the open of the first. 
+Counterintuitively 
+resumes the 
+uptrend.8 
+RSI Reset. The 
+massive fourth 
+candle serves to 
+reset an overbought 
+RSI back to a 
+neutral 50 level, 
+clearing the path for 
+further upside.5 
+Entry: Buy 
+immediately when 
+price breaks back 
+above the high of 
+the massive fourth 
+candle. Stop Loss: 
+Below the absolute 
+low of the fourth 
+candle. Target: 
+Previous uptrend 
+trajectory 
+projection.8 
+Concealing Baby 
+Swallow 
+Rare bullish 
+reversal. Features 
+two descending 
+Marubozus, a gap 
+down to a small 
+inverted hammer, 
+and a final bearish 
+candle that 
+completely engulfs 
+the third.8 
+MFI (Money Flow 
+Index). Despite the 
+fourth candle being 
+bearish, the MFI will 
+show strong bullish 
+divergence, 
+indicating secret 
+institutional 
+accumulation.24 
+Entry: Buy when 
+price breaks above 
+the high of the 
+engulfing fourth 
+candle. Stop Loss: 
+Below the absolute 
+low of the pattern. 
+Target: 50% 
+retracement of the 
+macro downtrend.8 
+Ladder Bottom 
+A five-candle 
+pattern featuring 
+three consecutive 
+bearish candles, an 
+inverted hammer, 
+and a bullish 
+breakout candle, 
+signaling the 
+systematic end of a 
+MACD 
+Convergence. The 
+MACD lines 
+converge tightly 
+during the inverted 
+hammer phase, 
+triggering a bullish 
+cross on the fifth 
+candle.12 
+Entry: On the close 
+of the fifth bullish 
+candle. Stop Loss: 
+Below the inverted 
+hammer's low. 
+Target: Nearest 
+major supply zone.8 
+
+================================================================================
+bearish trend.8 
+Upside Gap Two 
+Crows 
+A bearish reversal 
+where a long bullish 
+candle is followed 
+by a gap up to a 
+small bearish 
+candle, and a third 
+bearish candle that 
+engulfs the second 
+but fails to close the 
+gap.8 
+Stochastic 
+Overbought. 
+Validated when the 
+stochastic oscillator 
+spends prolonged 
+time above 80 and 
+crosses downward 
+during the third 
+candle.12 
+Entry: Sell short 
+when price breaks 
+below the third 
+candle's close. 
+Stop Loss: Above 
+the absolute high of 
+the pattern. Target: 
+Complete fill of the 
+initial gap.8 
+Tasuki Gap 
+(Upside/Downside) 
+A continuation 
+pattern. An upside 
+gap between two 
+bullish candles is 
+followed by a 
+bearish candle that 
+opens within the 
+second body and 
+closes within the 
+gap, testing it as 
+support.17 
+Volume Validation. 
+The gap must occur 
+on high volume, and 
+the corrective third 
+candle must occur 
+on relatively low 
+volume.17 
+Entry: Buy as soon 
+as the gap support 
+holds and price 
+resumes upward. 
+Stop Loss: Below 
+the bottom edge of 
+the gap. Target: 
+Channel 
+projection.17 
+Stick Sandwich 
+A bullish reversal 
+consisting of a 
+bearish candle, a 
+bullish candle, and 
+a second bearish 
+candle that closes 
+at the exact same 
+price as the first 
+bearish candle, 
+creating a hard 
+floor.17 
+Bollinger Band 
+Bottom. The 
+identical closes of 
+the first and third 
+candles should 
+precisely touch and 
+reject the lower 
+Bollinger Band.12 
+Entry: Buy on the 
+open of the fourth 
+candle if it gaps 
+higher. Stop Loss: 
+Just below the hard 
+floor established by 
+the sandwich. 
+Target: The upper 
+Bollinger Band.17 
+Sushi Roll 
+Reversal 
+A complex 10-bar 
+pattern. Five 
+narrow-range bars 
+representing 
+consolidation are 
+ATR Expansion. 
+The transition from 
+the first five bars to 
+the next five must 
+feature a massive 
+Entry: On the 
+breakout of the 
+second five-bar 
+structure's 
+extremes. Stop 
+
+================================================================================
+immediately 
+followed by five 
+volatile bars that 
+engulf the prior 
+range with higher 
+highs and lower 
+lows.29 
+expansion in the 
+Average True 
+Range.7 
+Loss: Opposite end 
+of the volatile 
+structure. Target: 
+Macro trend 
+reversal target.30 
+Macro Market Geometry: Classical Chart Patterns 
+While candlestick patterns define localized, short-term psychological dynamics, classical chart 
+patterns illustrate intermediate-to-macro supply and demand transitions.1 These patterns require 
+multiple weeks or months to form and resolve, mapping the trajectory of massive institutional 
+accumulation and distribution phases.1 Classical patterns are divided into three core categories: 
+Reversal, Continuation, and Bilateral. 
+Trading classical chart patterns relies heavily on algorithmic breakout rules to filter out market 
+noise and avoid "bull traps" or "bear traps" (false breakouts). The most critical validation metric 
+is the Volume Surge Rule: a legitimate breakout from any classical boundary must be 
+accompanied by a volume expansion of at least 50% above the 20-day moving average.18 
+Furthermore, the 3% Penetration Rule demands that price must close decisively beyond the 
+breakout boundary by a margin of at least 3% to confirm immediate acceptance of the new price 
+level.27 
+Reversal Chart Geometries 
+Reversal patterns indicate that the prevailing macroeconomic trend has reached structural 
+exhaustion. The underlying psychology shifts from aggression to distribution (at market tops) or 
+from capitulation to accumulation (at market bottoms).19 
+ 
+Pattern Name 
+Structural 
+Definition 
+Optimal Indicator 
+Confluence 
+Execution 
+Conditions (Entry, 
+Stop Loss, Target) 
+Head and 
+Shoulders 
+(Standard & 
+Inverse) 
+A three-peak 
+structure indicating 
+waning momentum. 
+A left shoulder, a 
+higher head, and a 
+lower right shoulder, 
+resting on a 
+Volume 
+Divergence. 
+Volume must be 
+highest on the left 
+shoulder, lower on 
+the head, and 
+lowest on the right 
+Entry: Close below 
+the neckline. Stop 
+Loss: Above the 
+right shoulder. 
+Target: Vertical 
+distance from the 
+head to the 
+
+================================================================================
+common support 
+"neckline".34 Inverse 
+operates at 
+bottoms. 
+shoulder. Breakout 
+volume must spike 
+massively.6 
+neckline, projected 
+downward.26 
+Double Top & 
+Double Bottom 
+Price attacks a 
+specific 
+support/resistance 
+level twice but fails, 
+creating an "M" or 
+"W" shape.34 Shows 
+absolute rejection of 
+a structural 
+boundary. 
+RSI Divergence. 
+The second 
+peak/trough must 
+be accompanied by 
+a lower high/higher 
+low on the RSI, 
+proving momentum 
+is fading despite 
+price retesting the 
+extreme.5 
+Entry: Break of the 
+intervening swing 
+low/high (neckline). 
+Stop Loss: 
+Above/below the 
+double 
+peaks/troughs. 
+Target: Height of 
+the pattern 
+projected from the 
+breakout.38 
+Triple Top & Triple 
+Bottom 
+A prolonged 
+variation of the 
+double formations, 
+reflecting a heavily 
+contested level 
+tested three distinct 
+times.3 The 
+extended 
+consolidation leads 
+to violent breakouts. 
+MACD Histogram. 
+The histogram must 
+show a progressive 
+weakening of 
+momentum across 
+all three sequential 
+tests of the 
+barrier.12 
+Entry: Break of the 
+support/resistance 
+baseline. Stop 
+Loss: Just inside 
+the pattern 
+boundary. Target: 
+Distance between 
+the peaks and the 
+baseline projected 
+outward.34 
+Adam & Eve 
+(Double Variant) 
+A specialized 
+double top/bottom. 
+The "Adam" peak is 
+sharp, narrow, and 
+V-shaped 
+(capitulation). The 
+"Eve" peak is broad, 
+rounded, and 
+U-shaped 
+(exhausted retest).1 
+Volume Validation. 
+Volume spikes 
+violently during the 
+Adam peak but 
+remains subdued 
+and rounded during 
+the Eve formation.41 
+Entry: Close past 
+the confirmation line 
+separating Adam 
+and Eve. Stop 
+Loss: Below the 
+lowest point of the 
+Eve structure. 
+Target: Height of 
+the pattern 
+projected.40 
+Rounding Top & 
+Bottom (Saucer) 
+A long, gentle 
+U-shape (or 
+inverted U) 
+Moving Average 
+Cross. Often 
+confirmed when a 
+Entry: Breakout 
+over the "rim" highs. 
+Stop Loss: Below 
+
+================================================================================
+indicating a very 
+gradual, methodical 
+shift in the 
+supply/demand 
+balance without 
+sharp reactive 
+swings.1 
+50-day moving 
+average gradually 
+crosses a 200-day 
+moving average 
+(Golden/Death 
+Cross) within the 
+bowl.19 
+the last higher low 
+within the right side 
+of the base. Target: 
+Base depth added 
+to the rim breakout 
+level.1 
+Diamond Top & 
+Bottom 
+A rare pattern 
+combining a 
+broadening 
+formation 
+(expanding 
+volatility) with a 
+symmetrical triangle 
+(contracting 
+volatility), forming a 
+distinct diamond 
+shape.1 
+ATR (Average True 
+Range). ATR will 
+expand rapidly 
+during the left half 
+of the diamond and 
+compress heavily 
+during the right 
+half.7 
+Entry: Break of the 
+final lower right 
+support trendline. 
+Stop Loss: Above 
+the most recent 
+swing high within 
+the diamond. 
+Target: Measured 
+movement of the 
+widest part of the 
+diamond.44 
+Bump and Run 
+Reversal 
+A massive 
+speculative rally 
+(the bump) abruptly 
+steepens an already 
+established 
+trendline, followed 
+by a sudden 
+collapse that breaks 
+the original 
+trendline.1 
+RSI Overbought 
+Extreme. The 
+"bump" phase is 
+characterized by an 
+RSI reading pushed 
+well beyond 80 or 
+85, denoting an 
+unsustainable 
+bubble.19 
+Entry: Breakdown 
+below the original, 
+less steep trendline. 
+Stop Loss: Above 
+the peak of the 
+bump. Target: The 
+origin point where 
+the bump initially 
+started.1 
+Pipe Bottom & Top 
+An aggressive, 
+rapid-reversal 
+pattern formed by 
+two adjacent, 
+significantly 
+elongated weekly or 
+daily price bars 
+operating in 
+opposite directions, 
+standing out 
+prominently.26 
+Volume Climax. 
+Both "pipes" must 
+be formed on the 
+highest relative 
+volume of the 
+preceding quarter, 
+indicating massive 
+institutional 
+capitulation and 
+reversal.6 
+Entry: Break of the 
+high/low of the 
+second pipe bar. 
+Stop Loss: Beyond 
+the extreme of the 
+longer pipe. Target: 
+Minimum 2:1 
+risk-to-reward 
+projection.46 
+
+================================================================================
+Dragon Pattern 
+A sophisticated 
+Double Bottom 
+variant requiring 
+specific pacing: a 
+"Head" (swing 
+high), "Two Feet" 
+(two lows), and a 
+central "Hump" 
+between the feet.47 
+Fibonacci 
+Confluence. The 
+first foot typically 
+bounces at a 38.2% 
+retracement, while 
+the second foot 
+tests a 61.8% or 
+78.6% level with 
+RSI divergence.47 
+Entry: Break above 
+a descending 
+trendline connecting 
+the Head and the 
+Hump. Stop Loss: 
+Below the lowest 
+Foot. Target: 
+Scaled at the 
+Hump, the Head, 
+and a 1.27 
+extension.47 
+Trend Continuation Chart Geometries 
+Continuation patterns represent temporary pauses, consolidations, or profit-taking phases within 
+an established macroeconomic trend.3 They act as structural resting points where the market 
+digests prior directional movements before resuming trajectory.32 
+ 
+Pattern Name 
+Structural 
+Definition 
+Optimal Indicator 
+Confluence 
+Execution 
+Conditions (Entry, 
+Stop Loss, Target) 
+Bull & Bear Flags 
+A sharp, aggressive 
+price movement 
+(the flagpole) 
+followed by a tight, 
+parallel, 
+counter-trend 
+channel (the flag) 
+representing orderly 
+profit taking.1 
+Volume 
+Contraction. 
+Volume must drop 
+significantly during 
+the formation of the 
+flag and explode 
+instantaneously 
+upon breakout.18 
+Entry: Breakout 
+close above/below 
+the flag boundary. 
+Stop Loss: Below 
+the lower flag 
+boundary or the 
+most recent higher 
+low. Target: 
+Flagpole height 
+projected from 
+breakout.1 
+Bull & Bear 
+Pennants 
+Similar to flags in 
+origin (a steep 
+flagpole), but the 
+subsequent 
+consolidation takes 
+the form of a small, 
+symmetrical 
+Bollinger Band 
+Squeeze. The 
+contracting nature 
+of the pennant 
+heavily pinches the 
+Bollinger Bands, 
+preceding violent 
+Entry: Close 
+beyond the 
+pennant's 
+converging 
+trendline. Stop 
+Loss: Beyond the 
+opposite trendline 
+
+================================================================================
+contracting 
+triangle.1 
+volatility 
+expansion.12 
+or last minor swing 
+point. Target: Pole 
+height projected 
+downward/upward.1 
+Ascending 
+Triangle 
+A bullish 
+consolidation 
+featuring a flat, 
+horizontal 
+resistance ceiling 
+with a rising lower 
+trendline, indicating 
+buyers are 
+aggressively 
+absorbing supply at 
+higher lows.1 
+OBV (On-Balance 
+Volume). OBV 
+should be trending 
+upwards even as 
+price remains flat 
+against the 
+resistance, showing 
+accumulation.6 
+Entry: Close above 
+the flat resistance 
+level. Stop Loss: 
+Below the most 
+recent rising swing 
+low. Target: 
+Triangle's height (at 
+widest part) added 
+to breakout level.1 
+Descending 
+Triangle 
+A bearish 
+consolidation 
+featuring a flat 
+support floor with a 
+declining upper 
+trendline, indicating 
+relentless selling 
+pressure at lower 
+highs.34 
+MACD. The MACD 
+line remains below 
+the zero line, 
+confirming that the 
+macro trend 
+remains bearish 
+during the 
+consolidation.12 
+Entry: Close below 
+the horizontal base 
+support. Stop 
+Loss: Above the 
+most recent lower 
+high. Target: 
+Subtract the 
+triangle's height 
+from the breakdown 
+level.1 
+Rectangles 
+(Trading Ranges) 
+Price oscillates 
+horizontally 
+between strictly 
+defined, parallel 
+support and 
+resistance zones, 
+representing a 
+market in perfect 
+equilibrium.1 
+Stochastic 
+Oscillator. 
+Excellent for 
+range-trading the 
+boundaries until a 
+breakout occurs. 
+Sells at overbought 
+(resistance) and 
+buys at oversold 
+(support).12 
+Entry: Breakout 
+and subsequent 
+retest of the 
+horizontal boundary. 
+Stop Loss: Just 
+inside the broken 
+boundary. Target: 
+Height of the 
+rectangle projected 
+outward.1 
+Cup and Handle 
+A bullish 
+continuation 
+resembling a 
+Volume Profile. 
+Volume declines 
+during the cup's 
+Entry: Breakout 
+above the handle's 
+descending 
+
+================================================================================
+teacup. Price forms 
+a rounded bottom, 
+reaches the prior 
+high, and 
+undergoes a minor, 
+downward-drifting 
+pullback (the 
+handle).1 
+descent, rises on 
+recovery, decreases 
+during the handle, 
+and spikes >50% 
+on breakout.49 
+trendline. Stop 
+Loss: Below the 
+lowest point of the 
+handle. Target: 
+Depth of the cup 
+added to the 
+breakout point.49 
+Measured Moves 
+(Up/Down) 
+A zig-zag 
+continuation 
+consisting of an 
+impulse leg, a 
+corrective 
+consolidation, and a 
+secondary impulse 
+leg that mirrors the 
+distance/slope of 
+the first.1 
+Fibonacci 
+Retracement. The 
+corrective pause 
+typically terminates 
+exactly at the 38.2% 
+or 50% Fibonacci 
+retracement of the 
+first impulse leg.22 
+Entry: Breakout 
+from the mid-pattern 
+corrective pause. 
+Stop Loss: Beyond 
+the extreme of the 
+corrective pause. 
+Target: 100% 
+equivalent 
+measurement of the 
+first leg.1 
+Bilateral and Indeterminate Geometries 
+Bilateral patterns imply a contraction or expansion in volatility where the directional breakout is 
+not inherently biased by the pattern itself. These geometries require a posture of strict neutrality; 
+traders must execute mechanically based upon the eventual structural breach rather than 
+predictive bias.34 
+ 
+Pattern Name 
+Structural 
+Definition 
+Optimal Indicator 
+Confluence 
+Execution 
+Conditions (Entry, 
+Stop Loss, Target) 
+Symmetrical 
+Triangles 
+Two converging 
+trendlines (lower 
+highs and higher 
+lows). Volatility 
+compresses 
+towards an apex, 
+behaving like a 
+coiled spring.34 
+ATR (Average True 
+Range). ATR hits 
+extreme 
+multi-month lows 
+just prior to the 
+apex breakout, 
+signaling maximum 
+energy 
+compression.7 
+Entry: Wait for a 
+confirmed 3% close 
+outside either 
+trendline. Stop 
+Loss: Just inside 
+the opposite 
+trendline. Target: 
+Width of the triangle 
+base projected from 
+breakout.37 
+
+================================================================================
+Wedges (Rising & 
+Falling) 
+Both trendlines 
+slope in the same 
+direction but 
+converge.26 A 
+Rising Wedge is 
+bearish; a Falling 
+Wedge is bullish.1 
+RSI Divergence. A 
+Rising Wedge must 
+show bearish RSI 
+divergence as price 
+pushes into the 
+narrowing apex to 
+confirm 
+exhaustion.5 
+Entry: Close 
+beyond the 
+counter-trend line 
+(e.g., breakdown 
+below lower line of 
+a Rising Wedge). 
+Stop Loss: Above 
+the last swing high. 
+Target: The origin 
+point of the wedge.1 
+Broadening 
+Formations 
+(Megaphones) 
+Trendlines diverge, 
+creating higher 
+highs and lower 
+lows.1 Signifies 
+expanding volatility 
+and lack of 
+institutional control.1 
+Volume Spikes. 
+Volume tends to 
+increase erratically 
+during the 
+formation, 
+contrasting with the 
+volume contraction 
+seen in triangles.52 
+Entry: Trade 
+reversals at the 
+edges with 
+confirmation, or 
+trade the breakout 
+of the final trendline. 
+Stop Loss: Beyond 
+the recent swing 
+outside the edge. 
+Target: Height of 
+the pattern 
+post-break.1 
+Ascending/Descen
+ding Broadening 
+Wedges 
+Diverging trendlines 
+sloped in a specific 
+direction. Ascending 
+Broadening 
+Wedges have a 
+bearish bias; 
+Descending have a 
+bullish bias.1 
+MACD Divergence. 
+Despite the 
+expanding price 
+extremes, the 
+MACD histogram 
+will fail to confirm 
+the expanding 
+swings, revealing 
+the internal 
+weakness.12 
+Entry: Wait for a 
+confirmed close 
+outside the trendline 
+opposing the slope. 
+Stop Loss: Above 
+the highest 
+high/lowest low 
+inside the formation. 
+Target: The origin 
+point of the 
+formation.52 
+Advanced Harmonic Geometry and Fibonacci 
+Structures 
+Harmonic trading relies on the premise that financial markets move in fractal, cyclical waves 
+dictated by the mathematical ratios of the Fibonacci sequence.56 Originating with H.M. Gartley in 
+1932 and modernized by Scott Carney, harmonic patterns utilize an exact framework of 
+
+================================================================================
+interconnected price swings (labeled X, A, B, C, D).56 
+Unlike classical patterns which rely on reactive breakouts, harmonic patterns are highly 
+predictive reversal structures. They define a mathematically exact Potential Reversal Zone 
+(PRZ) at point D, allowing traders to enter positions precisely as the trend exhausts itself at a 
+predefined liquidity node.58 To be classified as a valid harmonic structure, the individual legs 
+must adhere to strict geometric tolerances; deviations render the pattern invalid.58 
+The Harmonic Taxonomy and Execution Protocols 
+Harmonic trading is heavily systematic. The execution protocol at the PRZ dictates that traders 
+must wait for price to enter the zone and monitor for a confirming candlestick reversal pattern 
+(e.g., an Engulfing or Hammer on high volume) before executing.59 Risk management is rigid: 
+Stop-loss orders are placed mechanically just beyond the pattern's invalidation point (typically 
+Point X), and take-profit targets are standardized using the 38.2% and 61.8% Fibonacci 
+retracements of the entire CD leg.59 
+ 
+Pattern Name 
+Fibonacci 
+Structure 
+(Retracements & 
+Extensions) 
+PRZ / Point D 
+Completion 
+Characteristics & 
+Trading Logic 
+Gartley (222) 
+Point B: Exactly 
+61.8% of XA. Point 
+C: 38.2% - 88.6% of 
+AB. 
+78.6% retracement 
+of the XA leg.51 
+The premier 
+continuation pattern 
+representing a deep 
+but healthy 
+pullback. The AB 
+and CD legs 
+typically form 
+perfect time and 
+price symmetry.58 
+Bat 
+Point B: 38.2% or 
+50.0% of XA. Point 
+C: 38.2% - 88.6% of 
+AB. 
+88.6% retracement 
+of the XA leg.59 
+Highly precise 
+pattern allowing for 
+the tightest 
+stop-losses. The 
+deep 88.6% PRZ 
+acts as a hard 
+institutional barrier 
+protecting Point X.59 
+
+================================================================================
+Butterfly 
+Point B: Exactly 
+78.6% of XA. Point 
+C: 38.2% - 88.6% of 
+AB. 
+127.2% extension 
+of the XA leg.51 
+An extension 
+pattern where point 
+D forcibly exceeds 
+the origin point X. 
+Signals capitulation 
+and reversal at 
+extreme new highs 
+or lows.51 
+Crab 
+Point B: 38.2% - 
+61.8% of XA. Point 
+C: 38.2% - 88.6% of 
+AB. 
+161.8% extension 
+of the XA leg.51 
+An extreme 
+extension pattern 
+containing a very 
+elongated CD leg, 
+often driven by 
+violent stop-loss 
+hunting before a 
+massive reversal.51 
+Deep Crab 
+Point B: Exactly 
+88.6% of XA. Point 
+C: 38.2% - 88.6% of 
+AB. 
+161.8% extension 
+of the XA leg.58 
+A Crab variant 
+where point B 
+retraces incredibly 
+deeply to 88.6%, 
+creating a tighter 
+structural 
+consolidation before 
+the massive 161.8% 
+final extension.58 
+Shark 
+Uses an O-X-A-B-C 
+structure. Point B (C 
+in standard): 113% - 
+161.8% of AB. 
+88.6% retracement 
+of the OX leg.61 
+Focuses on the 
+88.6% retracement 
+acting as a 
+counter-trend 
+reaction point. The 
+steep outside lines 
+resemble a dorsal 
+fin.60 
+5-0 Pattern 
+Point B: 113% - 
+161.8% of XA. Point 
+C: 161.8% - 224% 
+of AB. 
+Exactly 50% 
+retracement of the 
+BC leg.65 
+A rare 5-point 
+structure signaling 
+the absolute 
+beginning of a new 
+trend rather than a 
+
+================================================================================
+retracement. Relies 
+heavily on the exact 
+50% BC 
+retracement.65 
+Cypher 
+Point B: 38.2% - 
+61.8% of XA. Point 
+C: 127.2% - 141.4% 
+of XA. 
+78.6% retracement 
+of the XC leg.67 
+An advanced 
+pattern where point 
+C wildly exceeds 
+point A, but point D 
+ultimately 
+completes safely 
+within the XA range, 
+trapping breakout 
+traders.67 
+AB=CD 
+N/A (Foundational 
+3-point pattern). 
+Point C: 61.8% or 
+78.6% of AB. 
+127.2% or 161.8% 
+extension of the BC 
+leg.57 
+The foundational 
+building block of all 
+harmonics. The AB 
+leg must be 
+perfectly 
+symmetrical in both 
+time and physical 
+distance to the CD 
+leg.57 
+Three Drives 
+Drive 2/3 complete 
+at 127.2% or 
+161.8% extensions 
+of prior correctives. 
+Completion of the 
+Third Drive.58 
+Consists of three 
+symmetrical 
+impulse legs 
+separated by 
+corrective intervals, 
+signaling absolute 
+trend exhaustion 
+and impending 
+reversal.58 
+Exotic Topologies and Institutional Manipulation 
+Cycles 
+Beyond traditional chart geometry and Fibonacci scaling, several advanced structural 
+frameworks explain complex market phenomena, including stop runs, institutional liquidity 
+hunting, and multi-phase cycle transitions. 
+
+================================================================================
+Wolfe Waves: The Physics of Price Equilibrium 
+Identified by Bill Wolfe, the Wolfe Wave is an esoteric 5-wave structural pattern based on 
+Newton's first law of physics, demonstrating an equilibrium-seeking mechanism in price action.70 
+The pattern requires an equidistant price channel.72 Waves 1, 2, 3, and 4 define the primary 
+structural channel. The defining characteristic is Wave 5, which must intentionally breach the 
+channel boundaries in a false breakout (a classic institutional stop-hunting maneuver) before 
+violently reverting.71 
+●​ Optimal Indicator Confluence: MACD and RSI. A valid Wolfe Wave must show 
+divergence on the MACD histogram and RSI during the formation of Wave 5, proving the 
+breakout is false and lacks momentum.71 
+●​ Execution Conditions: Entry occurs immediately as Wave 5 reverses and re-enters the 
+primary channel established by Waves 1-3.71 Stop-loss is placed just beyond the extreme 
+tip of Wave 5. The defining feature of the Wolfe Wave is its highly precise profit target, the 
+Estimated Price at Arrival (EPA). This is found by drawing a straight trendline connecting 
+the apex of Point 1 and Point 4 and extending it into the future.33 
+Wyckoff Theory: The Anatomy of Market Cycles 
+Richard Wyckoff's methodology transitions technical analysis from mere geometric pattern 
+matching into deep market micro-structure analysis.73 Wyckoff posited that markets are heavily 
+manipulated by the "Composite Man" (representing institutional capital) through repetitive, 
+engineered cycles of Accumulation, Markup, Distribution, and Markdown.74 To navigate these 
+cycles, Wyckoff delineated patterns into distinct Phases (A through E) marked by specific, 
+observable price and volume events.75 
+The Wyckoff Accumulation Schematic (Market Bottoms): 
+●​ Phase A (Stopping the Downtrend): Initiated by Preliminary Support (PS) as institutions 
+begin buying, culminating in a violent Selling Climax (SC) where retail capitulation is fully 
+absorbed on massive volume.75 This is followed by an Automatic Rally (AR) and a 
+Secondary Test (ST) of the SC lows on diminished volume.77 
+●​ Phase B (Building a Cause): A prolonged, choppy consolidation phase where institutions 
+systematically accumulate assets without driving the price up, establishing a trading 
+range.73 
+●​ Phase C (The Test/Shakeout): The defining moment of the schematic, featuring the 
+Spring. The Spring is a deliberate, momentary plunge below the Phase B support floor 
+designed to trigger retail stop-losses and trap breakout traders.75 If the Spring recovers 
+quickly on low volume, the institutional accumulation is complete.75 
+●​ Phase D (Trend Transition): Price breaks upward, demonstrating a Sign of Strength 
+(SOS) on massive volume.75 Pullbacks to new support floors are marked as the Last Point 
+of Support (LPS).75 
+
+================================================================================
+●​ Phase E (Markup): The asset definitively breaks out of the accumulation range, initiating 
+the macroeconomic uptrend.73 
+The Wyckoff Distribution Schematic (Market Tops): Operating as the inverse of 
+accumulation, institutions offload inventory to late-arriving retail participants.73 It is characterized 
+by Preliminary Supply (PSY) and a massive Buying Climax (BC) driven by retail euphoria.75 
+Instead of a Spring, Phase C features the Upthrust After Distribution (UTAD)—a fake 
+breakout above resistance to trap late buyers before the fatal markdown begins.75 This is 
+followed by the Sign of Weakness (SOW) and the Last Point of Supply (LPSY), confirming 
+the transition to a bear market.75 
+Indicator Alignment for Wyckoff Execution: Wyckoff theory relies almost exclusively on Price 
+Action and Volume (OBV/MFI). Volume must spike during climactic events (SC, BC, Spring, 
+UTAD) and contract completely during tests (ST) and consolidations, revealing the footprint of 
+the Composite Man.74 
+The Architecture of Indicator Confluence and System 
+Design 
+The true efficacy of pattern trading lies in the absolute rejection of indicator redundancy and the 
+embrace of orthogonal technical measurements.21 Utilizing multiple indicators from the same 
+category (e.g., mapping RSI, MACD, and Stochastics simultaneously on a single chart) creates 
+a dangerous illusion of confirmation known as indicator redundancy, where all tools simply 
+reflect the same underlying momentum math.21 
+A robust algorithmic execution system must synthesize exactly one tool from each distinct 
+mathematical category to validate a chart or candlestick pattern.7 
+1.​ Trend Filters (Exponential Moving Averages - EMA/SMA): No continuation pattern (e.g., 
+Bull Flag, Ascending Triangle) should be taken against the primary trend. The 50-day and 
+200-day SMAs serve as baseline directional filters. A pattern occurring above the 200-SMA 
+has a significantly higher probabilistic win rate for long trades.7 
+2.​ Momentum Filters (RSI or MACD): Reversal patterns (e.g., Double Bottoms, Falling 
+Wedges, Engulfing Candles) must feature bullish divergence on the RSI or the MACD 
+histogram, proving that downward momentum is mathematically exhausting before the 
+price physically reverses.5 
+3.​ Volume Confirmation (OBV or Raw Volume): Volume is the ultimate arbiter of 
+institutional intent. Breakouts from chart patterns must register at least 150% of the 20-day 
+average volume to be validated.18 Alternatively, the On-Balance Volume (OBV) indicator 
+can confirm if cumulative capital flows support the geometric price trajectory.6 
+4.​ Volatility Assessment (ATR & Bollinger Bands): The Average True Range (ATR) 
+dictates the objective placement of stop-losses.7 By placing stops 1.5x or 2x the ATR 
+
+================================================================================
+beyond a pattern's structural invalidation point (e.g., below the Head in a Head & 
+Shoulders), traders immunize their capital against normal market noise and algorithmic 
+stop-hunting wicks.7 Bollinger Bands compress heavily during bilateral patterns, and a 
+subsequent band expansion visually confirms the breakout velocity.12 
+By rigidly enforcing these exact confluence parameters—pairing specific geometries with their 
+mathematical counterparts—analysts transform subjective chart art into an objective, statistically 
+robust trading architecture. 
+Works cited 
+1.​ Chart Pattern Cheat Sheet – Interactive Guide - The Chart Guys, accessed March 
+25, 2026, https://www.chartguys.com/chart-pattern-cheat-sheet 
+2.​ Mastering Crypto Chart Patterns: Head & Shoulders, Triangles, Wedges & More - 
+BingX, accessed March 25, 2026, 
+https://bingx.com/en/learn/article/how-to-use-crypto-chart-patterns-head-and-shoul
+ders-triangles-wedges 
+3.​ Traditional Chart Patterns in Technical Analysis | TrendSpider Learning Center, 
+accessed March 25, 2026, 
+https://trendspider.com/learning-center/traditional-chart-patterns-in-technical-analy
+sis/ 
+4.​ Continuation candlestick patterns and others explained - Skilling, accessed March 
+25, 2026, https://skilling.com/eu/en/blog/trading-articles/candlestick-patterns/ 
+5.​ Combining Candlestick Patterns with Technical Indicators, accessed March 25, 
+2026, 
+https://www.tradejini.com/blogs/combining-candlestick-patterns-with-technical-indi
+cators 
+6.​ Technical Analysis Secrets: Chart Patterns That Win Trading Competitions - 
+Medium, accessed March 25, 2026, 
+https://medium.com/@fxmbrand/technical-analysis-secrets-chart-patterns-that-win
+-trading-competitions-84424ca4cb50 
+7.​ Best Technical Indicators For Day Trading - Defcofx, accessed March 25, 2026, 
+https://www.defcofx.com/best-technical-indicators-for-day-trading/ 
+8.​ 38 Candlestick Patterns for Pro Traders - Bullish And Bearish Chart ..., accessed 
+March 25, 2026, https://groww.in/blog/candlestick-patterns 
+9.​ Candlestick Patterns: The Updated Complete Guide (2025) - Morpher, accessed 
+March 25, 2026, https://www.morpher.com/blog/candlestick-patterns 
+10.​16 Candlestick Patterns Every Trader Should Know | IG International, accessed 
+March 25, 2026, 
+https://www.ig.com/en/trading-strategies/16-candlestick-patterns-every-trader-sho
+uld-know-180615 
+11.​Top 16 Candlestick Patterns Every Trader Should Know - Trade Nation, accessed 
+March 25, 2026, https://tradenation.com/articles/candlestick-patterns/ 
+12.​Top 5 Indicators for Candlestick Pattern Strategies - Morpher, accessed March 25, 
+2026, 
+
+================================================================================
+https://www.morpher.com/blog/top-5-indicators-for-candlestick-pattern-strategies 
+13.​How to Combine Candlestick Patterns with other Technical Indicators - Synapse 
+Trading, accessed March 25, 2026, 
+https://synapsetrading.com/how-to-combine-candlestick-patterns-with-other-techni
+cal-indicators/ 
+14.​Technical Indicators: Momentum, Trend & Volume Tools - Groww, accessed March 
+25, 2026, https://groww.in/blog/technical-indicators 
+15.​Candlestick Pattern Cheat Sheet – Interactive Guide - The Chart Guys, accessed 
+March 25, 2026, https://www.chartguys.com/candlestick-pattern-cheat-sheet 
+16.​Candlestick Pattern Cheat Sheet: 37 Key Signals to Learn - wikiHow, accessed 
+March 25, 2026, https://www.wikihow.com/Candlestick-Patterns-Cheat-Sheet 
+17.​Candlestick Pattern Dictionary - ChartSchool - StockCharts.com, accessed March 
+25, 2026, 
+https://chartschool.stockcharts.com/table-of-contents/chart-analysis/candlestick-ch
+arts/candlestick-pattern-dictionary 
+18.​How Volume Confirms Breakouts in Trading - LuxAlgo, accessed March 25, 2026, 
+https://www.luxalgo.com/blog/how-volume-confirms-breakouts-in-trading/ 
+19.​Reversal Candlestick Patterns: What Is It and How to Trade with Bullish and 
+Bearish Candlestick Patterns | Dukascopy Bank SA, accessed March 25, 2026, 
+https://www.dukascopy.com/swiss/english/marketwatch/articles/reversal-candlestic
+k-patterns/ 
+20.​60 Essential Candlestick Patterns: Trading Guide for Beginners, accessed March 
+25, 2026, 
+https://www.strike.money/technical-analysis/types-of-candlesticks-patterns 
+21.​How To Combine The Best Indicators And Avoid Wrong Signals - - Tradeciety, 
+accessed March 25, 2026, 
+https://tradeciety.com/how-to-choose-the-best-indicators-for-your-trading 
+22.​Popular Candlestick Patterns: Key Signals - LuxAlgo, accessed March 25, 2026, 
+https://www.luxalgo.com/blog/popular-candlestick-patterns-key-signals/ 
+23.​Popular Candlestick Patterns and Categories | TrendSpider Learning Center, 
+accessed March 25, 2026, 
+https://trendspider.com/learning-center/popular-candlestick-patterns-and-categorie
+s/ 
+24.​Understanding Indicators in Technical Analysis - Fidelity Investments, accessed 
+March 25, 2026, 
+https://www.fidelity.com/bin-public/060_www_fidelity_com/documents/learning-cen
+ter/Understanding-Indicators-TA.pdf 
+25.​Multi-Candlestick Pattern Recognition and Trading Strategy | by Sword Red | 
+Medium, accessed March 25, 2026, 
+https://medium.com/@redsword_23261/multi-candlestick-pattern-recognition-and-t
+rading-strategy-49db7b381700 
+26.​Identifying Chart Patterns with Technical Analysis - Fidelity Investments, accessed 
+March 25, 2026, 
+https://www.fidelity.com/bin-public/060_www_fidelity_com/documents/learning-cen
+ter/Idenitfying-Chart-Patterns.pdf 
+
+================================================================================
+27.​Technical Breakout Patterns: A Guide to Trading Success, accessed March 25, 
+2026, https://tradewiththepros.com/technical-breakout-patterns/ 
+28.​34 Candlestick Patterns Explained in Detail | Option Alpha, accessed March 25, 
+2026, https://optionalpha.com/topics/candlestick-patterns 
+29.​Reversal Patterns, Continuation Patterns & Chart Patterns / Axi, accessed March 
+25, 2026, https://www.axi.com/int/blog/education/continuation-reversal-patterns 
+30.​What Is It Sushi Roll Reversal Pattern? | Share India, accessed March 25, 2026, 
+https://www.shareindia.com/knowledge-center/online-share-trading/sushi-roll-rever
+sal-pattern 
+31.​Trend Reversals and the Sushi Roll Reversal Pattern | Market Pulse - FXOpen 
+UK, accessed March 25, 2026, 
+https://fxopen.com/blog/en/trend-reversals-and-the-sushi-roll-reversal-pattern/ 
+32.​10 Chart Patterns Every Trader Should Know | Vantage Markets, accessed March 
+25, 2026, https://www.vantagemarkets.com/en/academy/chart-patterns/ 
+33.​Wolfe Wave Trading Strategy - FX-List, accessed March 25, 2026, 
+https://fx-list.com/blog/strategies/wolfe-wave-trading-strategy 
+34.​Classical Chart Patterns: A Comprehensive Guide for Traders | Professor_Michael 
+on Binance Square, accessed March 25, 2026, 
+https://www.binance.com/en/square/post/18897896246681 
+35.​Double Top and Head & Shoulders: Understanding Chart Patterns in Trading, 
+accessed March 25, 2026, 
+https://www.skyriss.com/guides/double-top-head-and-shoulders-key-chart-patterns
+-in-trading 
+36.​Killer Breakout Trades With Volume Confirmation - - Tradeciety, accessed March 
+25, 2026, https://tradeciety.com/killer-breakout-trades-with-volume-confirmation 
+37.​Master Chart Patterns: Key Basics Explained - TradingSim, accessed March 25, 
+2026, 
+https://www.tradingsim.com/blog/master-chart-patterns-key-basics-explained 
+38.​Double Top Pattern: Your Complete Guide To Consistent Profits - Daily Price 
+Action, accessed March 25, 2026, 
+https://dailypriceaction.com/forex-beginners/double-top-pattern/ 
+39.​Chart Patterns: Triangles, Head & Shoulders, and Double Tops - Traders Training 
+Academy, accessed March 25, 2026, 
+https://traderstrainingacademy.co.in/chartpaternstriangleblog.html 
+40.​Adam and Eve Double Bottom Chart Pattern | Market Pulse - FXOpen UK, 
+accessed March 25, 2026, 
+https://fxopen.com/blog/en/adam-and-eve-double-bottom-chart-pattern/ 
+41.​Double Top (Adam & Eve) - The Chart Guys, accessed March 25, 2026, 
+https://www.chartguys.com/chart-patterns/double-top-adam-eve 
+42.​Adam and Eve Chart Pattern: Easy Identification and Trading Strategy - 
+HowToTrade, accessed March 25, 2026, 
+https://howtotrade.com/chart-patterns/adam-and-eve-pattern/ 
+43.​Top 10 Chart Patterns Every Trader Needs to Know | IG International, accessed 
+March 25, 2026, 
+https://www.ig.com/en/trading-strategies/10-chart-patterns-every-trader-needs-to-k
+
+================================================================================
+now-190514 
+44.​How to Trade the Diamond Chart Pattern | FBS, accessed March 25, 2026, 
+https://fbs.com/fbs-academy/traders-blog/how-to-trade-diamond-chart-patterns 
+45.​55 Trading Chart Patterns for Smarter Market Predictions - Strike Money, 
+accessed March 25, 2026, 
+https://www.strike.money/technical-analysis/chart-patterns 
+46.​Pipe Bottom Candlestick Pattern: Structure and Trading - FinGrad Blog, accessed 
+March 25, 2026, 
+https://joinfingrad.com/blog/pipe-bottom-candlestick-pattern-structure-and-trading/ 
+47.​Dragon Pattern Trading: Identify and Trade Market Reversals - Top One Trader, 
+accessed March 25, 2026, 
+https://www.toponetrader.com/blog/dragon-pattern-trading-identify-and-trade-mark
+et-reversals 
+48.​Dragon Pattern Trading Strategy - YouTube, accessed March 25, 2026, 
+https://www.youtube.com/watch?v=UY7PjZqPmZE 
+49.​Cup and Handle Trading Guide, accessed March 25, 2026, 
+https://www.warriortrading.com/cup-handle-definition/ 
+50.​Cup and Handle Pattern Success Rates Explained - LuxAlgo, accessed March 25, 
+2026, 
+https://www.luxalgo.com/blog/cup-and-handle-pattern-success-rates-explained/ 
+51.​The Ultimate - Harmonic Pattern Strategy Guides, accessed March 25, 2026, 
+https://www.ecoaca.com/wp-content/uploads/2023/08/The-Ultimate-Harmonic-Patt
+ern-Trading-Guides-FULL-VERSION.pdf 
+52.​Broadening Wedges – Rising, Falling, Bullish, or Bearish? - LuxAlgo, accessed 
+March 25, 2026, 
+https://www.luxalgo.com/blog/broadening-wedges-rising-falling-bullish-or-bearish-l/ 
+53.​Broadening Wedge Pattern: What Is It and How to Trade It - XS, accessed March 
+25, 2026, https://www.xs.com/en/blog/broadening-wedge-pattern/ 
+54.​Decoding the Broadening Wedge Ascending (Bullish) Pattern in Stock Trading - 
+Tickeron, accessed March 25, 2026, 
+https://tickeron.com/trading-investing-101/decoding-the-broadening-wedge-ascen
+ding-bullish-pattern-in-stock-trading/ 
+55.​5 Things to Know About the Broadening Wedge Pattern | EBC Financial Group, 
+accessed March 25, 2026, 
+https://www.ebc.com/forex/5-things-to-know-about-the-broadening-wedge-pattern 
+56.​Harmonic Trading Strategies and Patterns Explained - Traders Mastermind, 
+accessed March 25, 2026, 
+https://tradersmastermind.com/harmonic-trading-strategies-and-patterns-explaine
+d/ 
+57.​Harmonic Patterns - ChartSchool - StockCharts.com, accessed March 25, 2026, 
+https://chartschool.stockcharts.com/table-of-contents/trading-strategies-and-model
+s/trading-strategies/harmonic-patterns 
+58.​Harmonic Patterns in Trading: A Guide to Harmonic Trading | ThinkMarkets, 
+accessed March 25, 2026, 
+https://www.thinkmarkets.com/en/trading-academy/technical-analysis/harmonic-pa
+
+================================================================================
+tterns-in-trading-a-guide-to-harmonic-trading/ 
+59.​The Best Way to Trade Harmonic Patterns - STP TRADING, accessed March 25, 
+2026, https://www.stptrading.io/blog/the-best-way-to-trade-harmonic-patterns/ 
+60.​Harmonic Patterns Explained for Beginners - Warrior Trading, accessed March 25, 
+2026, https://www.warriortrading.com/harmonic-patterns/ 
+61.​Harmonic Patterns Cheat Sheet| Free Trading Guides - QuantVue, accessed 
+March 25, 2026, https://www.quantvue.io/post/harmonic-patterns-cheat-sheet 
+62.​Crab & Deep Crab Pattern - ForexBee, accessed March 25, 2026, 
+https://forexbee.co/crab-deep-crab-harmonic-pattern/ 
+63.​Crab Pattern Trading - Margex Blog, accessed March 25, 2026, 
+https://margex.com/en/blog/crab-pattern-trading/ 
+64.​Harmonic Patterns: Learn How to Identify and Trade Them - IG UK, accessed 
+March 25, 2026, 
+https://www.ig.com/uk/trading-strategies/top-7-harmonic-patterns-every-trader-sho
+uld-know-210608 
+65.​Harmonic patterns cheat sheet - City Index, accessed March 25, 2026, 
+https://www.cityindex.com/en-uk/news-and-analysis/harmonic-patterns/ 
+66.​5-0 pattern: Shark hunt - LiteFinance, accessed March 25, 2026, 
+https://www.litefinance.org/blog/for-beginners/harmonic-patterns/5-0-pattern/ 
+67.​Harmonic Patterns Cheatsheet - Everything You Need To Know - Indicator Vault 
+Blog, accessed March 25, 2026, 
+https://indicatorvault.com/harmonic-patterns-cheatsheet/ 
+68.​Harmonic Patterns Cheat Sheet [FREE Download] - HowToTrade, accessed 
+March 25, 2026, https://howtotrade.com/cheat-sheets/harmonic-patterns/ 
+69.​Harmonic Patterns: Learn How to Identify and Trade Them | IG International, 
+accessed March 25, 2026, 
+https://www.ig.com/en/trading-strategies/top-7-harmonic-patterns-every-trader-sho
+uld-know-210608 
+70.​Wolfe Wave Pattern Trading Guide, accessed March 25, 2026, 
+https://www.warriortrading.com/wolfe-wave-pattern/ 
+71.​How to Trade Wolfe Waves for Smarter Entry and Exit Points, accessed March 25, 
+2026, https://enlightenedstocktrading.com/wolfe-waves-pattern/ 
+72.​How to trade the Wolfe Wave pattern - - Tradeciety, accessed March 25, 2026, 
+https://tradeciety.com/trade-wolfe-wave-pattern 
+73.​Wyckoff Accumulation Pattern: Phases, Schematics & Trading Guide - 
+TrendSpider, accessed March 25, 2026, 
+https://trendspider.com/learning-center/chart-patterns-wyckoff-accumulation/ 
+74.​Wyckoff Method Theory & Patterns of Accumulation and Distribution - LiteFinance, 
+accessed March 25, 2026, 
+https://www.litefinance.org/blog/for-professionals/wyckoff-method/ 
+75.​Wyckoff Theory: Accumulation, Distribution & Markdown Phases Explained - 
+Mudrex, accessed March 25, 2026, https://mudrex.com/learn/wyckoff-theory/ 
+76.​Wyckoff Phases 2026: The 5 Phases Explained Step by Step | Rubén 
+Villahermosa, accessed March 25, 2026, 
+https://tradingwyckoff.com/en/phases-of-a-wyckoff-structure/ 
+
+================================================================================
+77.​Wyckoff Method, accessed March 25, 2026, 
+https://www.wyckoffanalytics.com/wyckoff-method/ 
+78.​The Ultimate Guide to Technical Indicators | TrendSpider Blog, accessed March 
+25, 2026, https://trendspider.com/blog/the-ultimate-guide-to-technical-indicators/ 
+79.​Technical Indicators & Overlays - ChartSchool - StockCharts.com, accessed 
+March 25, 2026, 
+https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-over
+lays 
+
+================================================================================

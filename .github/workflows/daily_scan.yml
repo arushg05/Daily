@@ -1,0 +1,37 @@
+name: Asymptote-LT Daily Scan
+
+on:
+  schedule:
+    # Run daily at 11:00 UTC (7:00 AM ET, 3 hours before market open)
+    - cron: '0 11 * * 1-5'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Run daily scanner
+        working-directory: backend
+        env:
+          SCAN_ALL_SP500: "true"
+        run: python main.py
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name "Asymptote-LT Bot"
+          git config user.email "bot@asymptote-lt.dev"
+          git add frontend/public/data/
+          git diff --cached --quiet || git commit -m "📊 Daily scan: $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push

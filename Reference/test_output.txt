@@ -1,0 +1,33 @@
+﻿Total candles: 30
+Indicators computed: 19 keys
+  atr_14: 2.142857142857143
+  bb_bandwidth: 3.466631967736643
+  bb_lower: 100.34261684931447
+  bb_mid: 102.11255
+  bb_upper: 103.88248315068553
+  ema_20: 102.21256689342405
+  latest_close: 105.001
+  latest_high: 107.0
+  latest_low: 103.0
+  mfi_14: 100.0
+  obv: 31500000.0
+  rsi_14: 100.0
+  sma_200: None
+  sma_50: None
+  stoch_d: 71.30584866522358
+  stoch_k: 70.944963023088
+  vol_sma_20: 1125000.0
+  volume_surge: True
+  volume_surge_ratio: 2.22
+
+Matches found: 4
+  Doji                      dir=bearish  score=72  SL=108.2153  TP=100.7153
+    confluence: {'momentum': True}
+  Long-Legged Doji          dir=bearish  score=72  SL=108.2153  TP=100.7153
+    confluence: {'volatility': True}
+  High-Wave Candle          dir=neutral  score=72  SL=100.7153  TP=109.2867
+    confluence: {'volatility': True}
+  Three White Soldiers      dir=bullish  score=52  SL=101.7867  TP=109.2867
+    confluence: {'volume': True}
+
+[OK] Smoke test passed!
