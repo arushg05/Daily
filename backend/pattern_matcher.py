@@ -1428,6 +1428,32 @@ def scan_for_patterns(symbol: str, df: pd.DataFrame, timeframe: str, htf_df: pd.
                               is_specialized=True, is_primary=True,
                               sl_override=sl_val, tp_override=tp_primary)
 
+    # Integrate optional pattern-mathematics module (user-provided logic)
+    try:
+        import importlib
+        pm = importlib.import_module("backend.pattern_math")
+    except Exception:
+        pm = None
+
+    if pm is not None:
+        try:
+            math_signals = pm.analyze_df(df, symbol=symbol)
+            for sig in math_signals:
+                sig_dir = sig.get("direction", "long")
+                direction = "bullish" if sig_dir in ("long", "bullish") else "bearish"
+                name = sig.get("pattern_type", "Pattern").replace("_", " ").title()
+                marks = sig.get("marks", [m3]) if isinstance(sig.get("marks", None), list) else [m3]
+                base_score = 80
+                sl = sig.get("stop_loss", None)
+                tp = sig.get("take_profit", None)
+                is_primary = bool(sig.get("is_primary", False))
+                add_setup(name, "pattern_math", direction, base_score, marks,
+                          is_specialized=True, is_primary=is_primary,
+                          sl_override=sl, tp_override=tp)
+        except Exception:
+            # Don't let optional module errors break main scanner
+            pass
+
     # ════════════════════════════════════════════════════════════════
     #  DEDUPLICATION
     # ════════════════════════════════════════════════════════════════
