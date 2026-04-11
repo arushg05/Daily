@@ -27,6 +27,7 @@ export default function App() {
 
   const handleSelect = (setup: Setup) => {
     setActiveSetup(setup);
+    setTimeframe(setup.timeframe === "1wk" ? "weekly" : "daily");
   };
 
   const setups = scanResult?.setups ?? [];

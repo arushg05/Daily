@@ -36,11 +36,8 @@ export default function Header({ lastScan, tickersScanned, totalSetups, showSpec
           </div>
           <div>
             <h1 className="text-base font-bold tracking-tight gradient-text">
-              ASYMPTOTE-LT
+              DailyCharts
             </h1>
-            <p className="text-[10px] text-text-dim font-medium tracking-widest uppercase">
-              Quant Terminal
-            </p>
           </div>
         </div>
       </div>

@@ -1,130 +1,100 @@
 import pandas as pd
 import numpy as np
-from typing import List, Dict, Optional, Tuple
+import ta
+from backend.data_fetcher import fetch_data
 
-# Tunable constants (sensible defaults)
 MIN_BARS_BETWEEN_SWINGS = 3
 MAX_PATTERN_WINDOW = 50
 TRIANGLE_WINDOW = 60
 PATTERN_COOLDOWN = 10
 GLOBAL_CAPITAL = 100000.0
 
+def fetch_ohlcv(symbol: str) -> pd.DataFrame | None:
+    df = fetch_data(symbol)
+    if df is not None:
+        # Capitalize columns to match the new structure
+        col_map = {"open": "Open", "high": "High", "low": "Low", "close": "Close", "volume": "Volume", "datetime": "Date"}
+        df.rename(columns=col_map, inplace=True)
+        if "Date" in df.columns:
+            df.set_index("Date", inplace=True)
+    return df
 
-# -------------------- Candle anatomy + indicators --------------------
 def enrich_candle_anatomy(df: pd.DataFrame) -> pd.DataFrame:
+    """Add body, wick, and validity columns."""
     df = df.copy()
-    df["raw_range"] = df["high"] - df["low"]
+    df["raw_range"] = df["High"] - df["Low"]
     df["valid_candle"] = df["raw_range"] >= 1e-5
     df["range_"] = df["raw_range"].clip(lower=1e-8)
-    df["body"] = (df["close"] - df["open"]).abs()
-    df["upper_wick"] = df["high"] - df[["open", "close"]].max(axis=1)
-    df["lower_wick"] = df[["open", "close"]].min(axis=1) - df["low"]
+    df["body"] = (df["Close"] - df["Open"]).abs()
+    df["upper_wick"] = df["High"] - df[["Open", "Close"]].max(axis=1)
+    df["lower_wick"] = df[["Open", "Close"]].min(axis=1) - df["Low"]
     df["body_pct"] = df["body"] / df["range_"]
     return df
 
-
-def _compute_atr(df: pd.DataFrame, window: int = 14) -> pd.Series:
-    high = df["high"]
-    low = df["low"]
-    close = df["close"]
-    prev_close = close.shift(1)
-    tr1 = high - low
-    tr2 = (high - prev_close).abs()
-    tr3 = (low - prev_close).abs()
-    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
-    return tr.rolling(window, min_periods=1).mean()
-
-
-def _compute_rsi(series: pd.Series, window: int = 14) -> pd.Series:
-    delta = series.diff()
-    up = delta.clip(lower=0)
-    down = -delta.clip(upper=0)
-    # Wilder's smoothing via EWMA with alpha=1/window
-    ma_up = up.ewm(alpha=1.0 / window, adjust=False).mean()
-    ma_down = down.ewm(alpha=1.0 / window, adjust=False).mean()
-    rs = ma_up / ma_down
-    rsi = 100 - (100 / (1 + rs))
-    return rsi
-
-
+# ──────────────────────────────────────────────
+# §2  INDICATORS
+# ──────────────────────────────────────────────
 def enrich_indicators(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    # ATR
-    if "atr" not in df.columns:
-        df["atr"] = _compute_atr(df, window=14)
-    # RSI
-    if "rsi" not in df.columns:
-        df["rsi"] = _compute_rsi(df["close"], window=14)
-    df["prev_rsi"] = df["rsi"].shift(1)
-    df["rsi_delta"] = df["rsi"] - df["prev_rsi"]
+    df["ATR"] = ta.volatility.average_true_range(df["High"], df["Low"], df["Close"], window=14)
+    df["RSI"] = ta.momentum.rsi(df["Close"], window=14)
+    df["prev_RSI"] = df["RSI"].shift(1)
+    df["rsi_delta"] = df["RSI"] - df["prev_RSI"]
     df["rsi_signal"] = df["rsi_delta"].abs() >= 2
 
-    # SMAs
-    df["sma_50"] = df["close"].rolling(50, min_periods=1).mean()
-    df["sma_200"] = df["close"].rolling(200, min_periods=1).mean()
-    df["atr_sma_50"] = df["atr"].rolling(50, min_periods=1).mean()
+    df["SMA_50"] = ta.trend.sma_indicator(df["Close"], window=50)
+    df["SMA_200"] = ta.trend.sma_indicator(df["Close"], window=200)
+    df["ATR_SMA_50"] = ta.trend.sma_indicator(df["ATR"], window=50)
 
-    # Volume
-    if "volume" in df.columns:
-        df["volume_ma"] = df["volume"].astype(float).rolling(20, min_periods=1).mean()
-        df["volume_surge"] = df["volume"] > 1.5 * df["volume_ma"]
-    else:
-        df["volume_ma"] = pd.Series(index=df.index, dtype=float)
-        df["volume_surge"] = pd.Series(False, index=df.index)
-
-    df["tolerance"] = 0.2 * df["atr"]
+    df["volume_ma"] = ta.trend.sma_indicator(df["Volume"].astype(float), window=20)
+    df["volume_surge"] = df["Volume"] > 1.5 * df["volume_ma"]
+    df["tolerance"] = 0.2 * df["ATR"]
     return df
 
+# ──────────────────────────────────────────────
+# §3  MARKET REGIME FILTER
+# ──────────────────────────────────────────────
+def regime_filter(row: pd.Series) -> tuple[bool, bool]:
+    """Return (trend_valid, volatility_valid) for a single bar."""
+    trend_strength = abs(row["SMA_50"] - row["SMA_200"])
+    trend_valid = trend_strength > 0.5 * row["ATR"]
+    volatility_valid = row["ATR"] > row["ATR_SMA_50"] * 0.8
+    return trend_valid, volatility_valid
 
-# -------------------- Regime filter --------------------
-def regime_filter(row: pd.Series) -> Tuple[bool, bool]:
-    sma50, sma200 = row.get("sma_50"), row.get("sma_200")
-    atr = row.get("atr")
-    if pd.isna(sma50) or pd.isna(sma200) or pd.isna(atr):
-        return False, False
-    trend_strength = abs(sma50 - sma200)
-    trend_valid = trend_strength > 0.5 * atr
-    atr_sma50 = row.get("atr_sma_50", np.nan)
-    volatility_valid = False
-    if pd.notna(atr_sma50):
-        volatility_valid = atr > atr_sma50 * 0.8
-    return bool(trend_valid), bool(volatility_valid)
-
-
-# -------------------- Single-candle detectors --------------------
+# ──────────────────────────────────────────────
+# §6  SINGLE-CANDLE PATTERNS
+# ──────────────────────────────────────────────
 def detect_hammer(row: pd.Series) -> bool:
     return (
-        row.get("body_pct", 1.0) <= 0.3
-        and row.get("lower_wick", 0.0) >= max(2 * row.get("body", 0.0), 0.6 * row.get("raw_range", 0.0))
-        and row.get("upper_wick", 0.0) <= 0.15 * row.get("raw_range", 0.0)
+        row["body_pct"] <= 0.3
+        and row["lower_wick"] >= max(2 * row["body"], 0.6 * row["range_"])
+        and row["upper_wick"] <= 0.15 * row["range_"]
     )
-
 
 def detect_shooting_star(row: pd.Series) -> bool:
     return (
-        row.get("body_pct", 1.0) <= 0.3
-        and row.get("upper_wick", 0.0) >= max(2 * row.get("body", 0.0), 0.6 * row.get("raw_range", 0.0))
-        and row.get("lower_wick", 0.0) <= 0.15 * row.get("raw_range", 0.0)
+        row["body_pct"] <= 0.3
+        and row["upper_wick"] >= max(2 * row["body"], 0.6 * row["range_"])
+        and row["lower_wick"] <= 0.15 * row["range_"]
     )
 
-
 def detect_doji(row: pd.Series) -> bool:
-    return row.get("body_pct", 1.0) <= 0.05
+    return row["body_pct"] <= 0.05
 
-
-# -------------------- Multi-candle detectors --------------------
+# ──────────────────────────────────────────────
+# §7  MULTI-CANDLE (Morning Star / Evening Star)
+# ──────────────────────────────────────────────
 def detect_morning_star(df: pd.DataFrame, idx: int) -> bool:
     if idx < 2:
         return False
     c1 = df.iloc[idx - 2]
     c2 = df.iloc[idx - 1]
     c3 = df.iloc[idx]
-    c1_bearish = c1["close"] < c1["open"]
+    c1_bearish = c1["Close"] < c1["Open"]
     c2_small = c2["body_pct"] <= 0.3
-    c3_bullish = c3["close"] > c3["open"]
-    c3_closes_into_c1 = c3["close"] > (c1["open"] + c1["close"]) / 2
+    c3_bullish = c3["Close"] > c3["Open"]
+    c3_closes_into_c1 = c3["Close"] > (c1["Open"] + c1["Close"]) / 2
     return c1_bearish and c2_small and c3_bullish and c3_closes_into_c1
-
 
 def detect_evening_star(df: pd.DataFrame, idx: int) -> bool:
     if idx < 2:
@@ -132,48 +102,56 @@ def detect_evening_star(df: pd.DataFrame, idx: int) -> bool:
     c1 = df.iloc[idx - 2]
     c2 = df.iloc[idx - 1]
     c3 = df.iloc[idx]
-    c1_bullish = c1["close"] > c1["open"]
+    c1_bullish = c1["Close"] > c1["Open"]
     c2_small = c2["body_pct"] <= 0.3
-    c3_bearish = c3["close"] < c3["open"]
-    c3_closes_into_c1 = c3["close"] < (c1["open"] + c1["close"]) / 2
+    c3_bearish = c3["Close"] < c3["Open"]
+    c3_closes_into_c1 = c3["Close"] < (c1["Open"] + c1["Close"]) / 2
     return c1_bullish and c2_small and c3_bearish and c3_closes_into_c1
 
 
-# -------------------- Tweezer detector --------------------
-def detect_tweezer(df: pd.DataFrame, idx: int) -> Optional[str]:
+# ──────────────────────────────────────────────
+# §8  TWEEZER TOP / BOTTOM
+# ──────────────────────────────────────────────
+def detect_tweezer(df: pd.DataFrame, idx: int) -> str | None:
+    """Returns 'tweezer_top', 'tweezer_bottom', or None."""
     if idx < MIN_BARS_BETWEEN_SWINGS:
         return None
     cur = df.iloc[idx]
-    tol = cur.get("tolerance", 0.0)
+    tol = cur["tolerance"]
+    # Search backwards within valid spacing
     for j in range(MIN_BARS_BETWEEN_SWINGS, min(idx, MAX_PATTERN_WINDOW) + 1):
         prev = df.iloc[idx - j]
-        if abs(prev["high"] - cur["high"]) <= tol:
+        if abs(prev["High"] - cur["High"]) <= tol:
             return "tweezer_top"
-        if abs(prev["low"] - cur["low"]) <= tol:
+        if abs(prev["Low"] - cur["Low"]) <= tol:
             return "tweezer_bottom"
     return None
 
-
-# -------------------- Triangle detection (rolling regression) --------------------
-def detect_triangle(df: pd.DataFrame, idx: int) -> Optional[Dict]:
+# ──────────────────────────────────────────────
+# §9  TRIANGLE (Rolling Regression + Breakout)
+# ──────────────────────────────────────────────
+def detect_triangle(df: pd.DataFrame, idx: int) -> dict | None:
+    """
+    Rolling linear regression on upper/lower bounds.
+    Returns a signal dict fragment or None.
+    """
     window = TRIANGLE_WINDOW
     if idx < window:
         return None
 
     cur = df.iloc[idx]
-    atr = cur.get("atr", np.nan)
-    atr_sma50 = cur.get("atr_sma_50", np.nan)
-    if pd.isna(atr) or pd.isna(atr_sma50) or not (atr > atr_sma50 * 0.8):
+    volatility_valid = cur["ATR"] > cur["ATR_SMA_50"] * 0.8
+    if not volatility_valid:
         return None
 
-    highs = df["high"].iloc[idx - window + 1 : idx + 1].values
-    lows = df["low"].iloc[idx - window + 1 : idx + 1].values
+    highs = df["High"].iloc[idx - window + 1 : idx + 1].values
+    lows = df["Low"].iloc[idx - window + 1 : idx + 1].values
     x = np.arange(window, dtype=float)
 
     try:
         upper_slope, upper_intercept = np.polyfit(x, highs, 1)
         lower_slope, lower_intercept = np.polyfit(x, lows, 1)
-    except Exception:
+    except np.linalg.LinAlgError:
         return None
 
     t = window - 1
@@ -186,9 +164,10 @@ def detect_triangle(df: pd.DataFrame, idx: int) -> Optional[Dict]:
     if width_start <= 0:
         return None
     if width_end > 0.95 * width_start:
-        return None
+        return None  # Not converging
 
-    close = cur["close"]
+    close = cur["Close"]
+    atr = cur["ATR"]
     buffer = max(0.5 * atr, 0.003 * close)
 
     if close > upper_trend + buffer:
@@ -198,10 +177,9 @@ def detect_triangle(df: pd.DataFrame, idx: int) -> Optional[Dict]:
         return {
             "pattern_type": "triangle_breakout",
             "direction": "long",
-            "entry": float(entry),
-            "stop_loss": float(stop_loss),
-            "take_profit": float(target),
-            "is_primary": True,
+            "entry": entry,
+            "stop_loss": stop_loss,
+            "take_profit": target,
         }
     elif close < lower_trend - buffer:
         entry = close
@@ -210,39 +188,45 @@ def detect_triangle(df: pd.DataFrame, idx: int) -> Optional[Dict]:
         return {
             "pattern_type": "triangle_breakout",
             "direction": "short",
-            "entry": float(entry),
-            "stop_loss": float(stop_loss),
-            "take_profit": float(target),
-            "is_primary": True,
+            "entry": entry,
+            "stop_loss": stop_loss,
+            "take_profit": target,
         }
     return None
 
-
-# -------------------- Double top / double bottom (swing-based) --------------------
-def _find_swing_points(series: pd.Series, kind: str = "high") -> List[Tuple[int, float]]:
-    pts: List[Tuple[int, float]] = []
+# ──────────────────────────────────────────────
+# §10  DOUBLE TOP / DOUBLE BOTTOM (Fully Constrained)
+# ──────────────────────────────────────────────
+def _find_swing_points(series: pd.Series, kind: str = "high") -> list[tuple[int, float]]:
+    """Return list of (positional-index, value) for local swing highs/lows."""
+    pts = []
     for i in range(1, len(series) - 1):
         if kind == "high":
             if series.iloc[i] > series.iloc[i - 1] and series.iloc[i] > series.iloc[i + 1]:
-                pts.append((i, float(series.iloc[i])))
+                pts.append((i, series.iloc[i]))
         else:
             if series.iloc[i] < series.iloc[i - 1] and series.iloc[i] < series.iloc[i + 1]:
-                pts.append((i, float(series.iloc[i])))
+                pts.append((i, series.iloc[i]))
     return pts
 
-
-def detect_double_top(df: pd.DataFrame, idx: int) -> Optional[Dict]:
+def detect_double_top(df: pd.DataFrame, idx: int) -> dict | None:
+    """
+    Double Top:  peak1_idx < trough_idx < peak2_idx
+    peak2 > peak1, abs(peak2 - peak1) <= 0.05 * peak1
+    RSI divergence, volume divergence, neckline break + volume surge.
+    """
     window_start = max(0, idx - MAX_PATTERN_WINDOW)
     window_df = df.iloc[window_start : idx + 1]
     if len(window_df) < MIN_BARS_BETWEEN_SWINGS * 3:
         return None
 
-    peaks = _find_swing_points(window_df["high"], "high")
-    troughs = _find_swing_points(window_df["low"], "low")
+    peaks = _find_swing_points(window_df["High"], "high")
+    troughs = _find_swing_points(window_df["Low"], "low")
 
     if len(peaks) < 2 or len(troughs) < 1:
         return None
 
+    # Try pairs starting from the most recent
     for i in range(len(peaks) - 1, 0, -1):
         p2_idx, p2_val = peaks[i]
         for j in range(i - 1, -1, -1):
@@ -252,33 +236,38 @@ def detect_double_top(df: pd.DataFrame, idx: int) -> Optional[Dict]:
             if spacing < MIN_BARS_BETWEEN_SWINGS or spacing > MAX_PATTERN_WINDOW:
                 continue
 
+            # Price proximity
             if abs(p2_val - p1_val) > 0.05 * p1_val:
                 continue
 
+            # Find trough between peaks
             mid_troughs = [t for t in troughs if p1_idx < t[0] < p2_idx]
             if not mid_troughs:
                 continue
             trough_idx, trough_val = min(mid_troughs, key=lambda t: t[1])
 
+            # RSI divergence:  RSI at peak2 < RSI at peak1 - 2
             abs_p1 = window_start + p1_idx
             abs_p2 = window_start + p2_idx
-            rsi_p1 = df.iloc[abs_p1].get("rsi", np.nan)
-            rsi_p2 = df.iloc[abs_p2].get("rsi", np.nan)
-            if not (pd.notna(rsi_p1) and pd.notna(rsi_p2) and rsi_p2 < rsi_p1 - 2):
+            rsi_p1 = df.iloc[abs_p1]["RSI"]
+            rsi_p2 = df.iloc[abs_p2]["RSI"]
+            if not (rsi_p2 < rsi_p1 - 2):
                 continue
 
-            vol_p1 = df.iloc[abs_p1].get("volume", np.nan)
-            vol_p2 = df.iloc[abs_p2].get("volume", np.nan)
-            if not (pd.notna(vol_p1) and pd.notna(vol_p2) and vol_p2 < vol_p1):
+            # Volume divergence
+            vol_p1 = df.iloc[abs_p1]["Volume"]
+            vol_p2 = df.iloc[abs_p2]["Volume"]
+            if not (vol_p2 < vol_p1):
                 continue
 
+            # Neckline break + volume surge
             cur = df.iloc[idx]
-            if not (cur["close"] < trough_val and bool(cur.get("volume_surge", False))):
+            if not (cur["Close"] < trough_val and cur["volume_surge"]):
                 continue
 
-            entry = float(cur["close"])
-            stop_loss = float(p2_val + 0.3 * float(cur.get("atr", 0.0)))
-            target = float(entry - (p2_val - trough_val))
+            entry = cur["Close"]
+            stop_loss = p2_val + 0.3 * cur["ATR"]
+            target = entry - (p2_val - trough_val)
 
             return {
                 "pattern_type": "double_top",
@@ -289,15 +278,19 @@ def detect_double_top(df: pd.DataFrame, idx: int) -> Optional[Dict]:
             }
     return None
 
-
-def detect_double_bottom(df: pd.DataFrame, idx: int) -> Optional[Dict]:
+def detect_double_bottom(df: pd.DataFrame, idx: int) -> dict | None:
+    """
+    Double Bottom: trough1_idx < peak_idx < trough2_idx
+    trough2 < trough1, abs(trough2 - trough1) <= 0.05 * trough1
+    RSI divergence, volume contraction, neckline break + volume surge.
+    """
     window_start = max(0, idx - MAX_PATTERN_WINDOW)
     window_df = df.iloc[window_start : idx + 1]
     if len(window_df) < MIN_BARS_BETWEEN_SWINGS * 3:
         return None
 
-    troughs = _find_swing_points(window_df["low"], "low")
-    peaks = _find_swing_points(window_df["high"], "high")
+    troughs = _find_swing_points(window_df["Low"], "low")
+    peaks = _find_swing_points(window_df["High"], "high")
 
     if len(troughs) < 2 or len(peaks) < 1:
         return None
@@ -311,33 +304,38 @@ def detect_double_bottom(df: pd.DataFrame, idx: int) -> Optional[Dict]:
             if spacing < MIN_BARS_BETWEEN_SWINGS or spacing > MAX_PATTERN_WINDOW:
                 continue
 
+            # Price proximity
             if abs(t2_val - t1_val) > 0.05 * t1_val:
                 continue
 
+            # Find peak between troughs
             mid_peaks = [p for p in peaks if t1_idx < p[0] < t2_idx]
             if not mid_peaks:
                 continue
             peak_idx, peak_val = max(mid_peaks, key=lambda p: p[1])
 
+            # RSI divergence: RSI at trough2 > RSI at trough1 + 2
             abs_t1 = window_start + t1_idx
             abs_t2 = window_start + t2_idx
-            rsi_t1 = df.iloc[abs_t1].get("rsi", np.nan)
-            rsi_t2 = df.iloc[abs_t2].get("rsi", np.nan)
-            if not (pd.notna(rsi_t1) and pd.notna(rsi_t2) and rsi_t2 > rsi_t1 + 2):
+            rsi_t1 = df.iloc[abs_t1]["RSI"]
+            rsi_t2 = df.iloc[abs_t2]["RSI"]
+            if not (rsi_t2 > rsi_t1 + 2):
                 continue
 
-            vol_t1 = df.iloc[abs_t1].get("volume", np.nan)
-            vol_t2 = df.iloc[abs_t2].get("volume", np.nan)
-            if not (pd.notna(vol_t1) and pd.notna(vol_t2) and vol_t2 < vol_t1):
+            # Volume contraction at formation
+            vol_t1 = df.iloc[abs_t1]["Volume"]
+            vol_t2 = df.iloc[abs_t2]["Volume"]
+            if not (vol_t2 < vol_t1):
                 continue
 
+            # Neckline break + volume surge
             cur = df.iloc[idx]
-            if not (cur["close"] > peak_val and bool(cur.get("volume_surge", False))):
+            if not (cur["Close"] > peak_val and cur["volume_surge"]):
                 continue
 
-            entry = float(cur["close"])
-            stop_loss = float(t2_val - 0.3 * float(cur.get("atr", 0.0)))
-            target = float(entry + (peak_val - t2_val))
+            entry = cur["Close"]
+            stop_loss = t2_val - 0.3 * cur["ATR"]
+            target = entry + (peak_val - t2_val)
 
             return {
                 "pattern_type": "double_bottom",
@@ -348,98 +346,117 @@ def detect_double_bottom(df: pd.DataFrame, idx: int) -> Optional[Dict]:
             }
     return None
 
-
-# -------------------- Engulfing --------------------
-def detect_engulfing(df: pd.DataFrame, idx: int) -> Optional[str]:
+# ──────────────────────────────────────────────
+# ENGULFING PATTERNS
+# ──────────────────────────────────────────────
+def detect_engulfing(df: pd.DataFrame, idx: int) -> str | None:
     if idx < 1:
         return None
     prev = df.iloc[idx - 1]
     cur = df.iloc[idx]
     if (
-        prev["close"] < prev["open"]
-        and cur["close"] > cur["open"]
-        and cur["open"] <= prev["close"]
-        and cur["close"] >= prev["open"]
+        prev["Close"] < prev["Open"]
+        and cur["Close"] > cur["Open"]
+        and cur["Open"] <= prev["Close"]
+        and cur["Close"] >= prev["Open"]
     ):
         return "engulfing_bullish"
     if (
-        prev["close"] > prev["open"]
-        and cur["close"] < cur["open"]
-        and cur["open"] >= prev["close"]
-        and cur["close"] <= prev["open"]
+        prev["Close"] > prev["Open"]
+        and cur["Close"] < cur["Open"]
+        and cur["Open"] >= prev["Close"]
+        and cur["Close"] <= prev["Open"]
     ):
         return "engulfing_bearish"
     return None
 
-
-# -------------------- Risk model --------------------
-def risk_gate(entry: float, stop_loss: float, take_profit: float, direction: str) -> Tuple[bool, float, float]:
+# ──────────────────────────────────────────────
+# §11 RISK MODEL
+# ──────────────────────────────────────────────
+def risk_gate(entry: float, stop_loss: float, take_profit: float, direction: str) -> tuple[bool, float, float]:
+    """
+    Returns (valid, risk_reward, position_size).
+    Hard constraint: RR ≥ 2.0.
+    """
     risk = abs(entry - stop_loss)
     risk = max(risk, 1e-4)
     reward = abs(take_profit - entry)
-    rr = reward / risk if risk > 0 else 0.0
+
+    rr = reward / risk
     position_size = (0.01 * GLOBAL_CAPITAL) / risk
+
     return rr >= 2.0, round(rr, 2), round(position_size, 2)
 
-
-# -------------------- Signal builders --------------------
-def build_single_candle_signal(row: pd.Series, pattern: str) -> Dict:
-    atr = float(row.get("atr", 0.0))
-    close = float(row["close"])
+# ──────────────────────────────────────────────
+# §5 + §12  PATTERN LABELING + SIGNAL EXECUTION
+# ──────────────────────────────────────────────
+def build_single_candle_signal(row, pattern: str) -> dict:
+    """Construct entry/SL/TP for single-candle patterns using ATR."""
+    atr = row["ATR"]
+    close = row["Close"]
     if pattern == "hammer":
-        return {"direction": "long", "entry": close, "stop_loss": float(row["low"] - 0.3 * atr), "take_profit": float(close + 2.5 * atr)}
+        return {"direction": "long", "entry": close, "stop_loss": row["Low"] - 0.3 * atr, "take_profit": close + 2.5 * atr}
     elif pattern == "shooting_star":
-        return {"direction": "short", "entry": close, "stop_loss": float(row["high"] + 0.3 * atr), "take_profit": float(close - 2.5 * atr)}
+        return {"direction": "short", "entry": close, "stop_loss": row["High"] + 0.3 * atr, "take_profit": close - 2.5 * atr}
     elif pattern == "doji":
-        if row.get("sma_50", 0.0) > row.get("sma_200", 0.0):
-            return {"direction": "long", "entry": close, "stop_loss": float(row["low"] - 0.3 * atr), "take_profit": float(close + 2.0 * atr)}
+        # Doji is neutral — directional bias from trend
+        if row["SMA_50"] > row["SMA_200"]:
+            return {"direction": "long", "entry": close, "stop_loss": row["Low"] - 0.3 * atr, "take_profit": close + 2.0 * atr}
         else:
-            return {"direction": "short", "entry": close, "stop_loss": float(row["high"] + 0.3 * atr), "take_profit": float(close - 2.0 * atr)}
+            return {"direction": "short", "entry": close, "stop_loss": row["High"] + 0.3 * atr, "take_profit": close - 2.0 * atr}
     return {}
 
-
-def build_tweezer_signal(df: pd.DataFrame, idx: int, kind: str) -> Dict:
+def build_tweezer_signal(df, idx, kind):
     cur = df.iloc[idx]
-    atr = float(cur.get("atr", 0.0))
-    close = float(cur["close"])
+    atr = cur["ATR"]
+    close = cur["Close"]
     if kind == "tweezer_bottom":
-        sl = float(cur["low"] - 0.3 * atr)
-        tp = float(close + 2.5 * atr)
+        sl = cur["Low"] - 0.3 * atr
+        tp = close + 2.5 * atr
         return {"direction": "long", "entry": close, "stop_loss": sl, "take_profit": tp}
     else:
-        sl = float(cur["high"] + 0.3 * atr)
-        tp = float(close - 2.5 * atr)
+        sl = cur["High"] + 0.3 * atr
+        tp = close - 2.5 * atr
         return {"direction": "short", "entry": close, "stop_loss": sl, "take_profit": tp}
 
-
-def build_multi_candle_signal(df: pd.DataFrame, idx: int, kind: str) -> Dict:
+def build_multi_candle_signal(df, idx, kind):
     cur = df.iloc[idx]
-    atr = float(cur.get("atr", 0.0))
-    close = float(cur["close"])
+    atr = cur["ATR"]
+    close = cur["Close"]
     if kind == "morning_star":
-        sl = float(df.iloc[idx - 1]["low"] - 0.3 * atr)
-        tp = float(close + 2.5 * atr)
+        sl = df.iloc[idx - 1]["Low"] - 0.3 * atr
+        tp = close + 2.5 * atr
         return {"direction": "long", "entry": close, "stop_loss": sl, "take_profit": tp}
-    else:
-        sl = float(df.iloc[idx - 1]["high"] + 0.3 * atr)
-        tp = float(close - 2.5 * atr)
+    else:  # evening_star
+        sl = df.iloc[idx - 1]["High"] + 0.3 * atr
+        tp = close - 2.5 * atr
         return {"direction": "short", "entry": close, "stop_loss": sl, "take_profit": tp}
 
-
-# -------------------- Analyzer (run on dataframe) --------------------
-def analyze_df(df: pd.DataFrame, symbol: Optional[str] = None) -> List[Dict]:
-    if df is None or len(df) < 200:
+def analyze_ticker(ticker_info: dict) -> list[dict]:
+    """
+    Run the full pattern suite on one ticker.
+    Returns a list of valid signal dicts (may be empty).
+    """
+    symbol = ticker_info.get("symbol")
+    df = fetch_ohlcv(symbol)
+    if df is None:
         return []
 
-    df = df.copy()
+    # Discard bad ticks (§ Data Integrity: Low == High)
+    df = df[df["High"] != df["Low"]].copy()
+    if len(df) < 200:
+        return []
+
     df = enrich_candle_anatomy(df)
     df = enrich_indicators(df)
-    df = df.dropna(subset=["atr", "rsi", "sma_50", "sma_200", "atr_sma_50", "volume_ma"]).copy()
+    df = df.dropna(subset=["ATR", "RSI", "SMA_50", "SMA_200", "ATR_SMA_50", "volume_ma"]).copy()
+    df = df.reset_index(drop=False)  # keep Date as column
 
     if len(df) < TRIANGLE_WINDOW + 10:
         return []
 
-    signals: List[Dict] = []
+    signals: list[dict] = []
+    last_pattern_bar = -PATTERN_COOLDOWN - 1  # allow first bar
 
     idx = len(df) - 2
     if idx < TRIANGLE_WINDOW:
@@ -447,54 +464,64 @@ def analyze_df(df: pd.DataFrame, symbol: Optional[str] = None) -> List[Dict]:
 
     row = df.iloc[idx]
 
+    # §3 Regime filter
     trend_valid, volatility_valid = regime_filter(row)
     if not (trend_valid and volatility_valid):
         return []
 
+    # §5 Priority-ordered detection — one signal per bar
     detected = None
 
+    # ── TRIANGLE ──
     tri = detect_triangle(df, idx)
     if tri is not None:
         detected = tri
 
+    # ── DOUBLE TOP ──
     if detected is None:
         dt = detect_double_top(df, idx)
         if dt is not None:
             detected = dt
 
+    # ── DOUBLE BOTTOM ──
     if detected is None:
         db = detect_double_bottom(df, idx)
         if db is not None:
             detected = db
 
+    # ── MORNING STAR ──
     if detected is None and detect_morning_star(df, idx):
         frag = build_multi_candle_signal(df, idx, "morning_star")
         detected = {"pattern_type": "morning_star", **frag}
 
+    # ── EVENING STAR ──
     if detected is None and detect_evening_star(df, idx):
         frag = build_multi_candle_signal(df, idx, "evening_star")
         detected = {"pattern_type": "evening_star", **frag}
 
+    # ── TWEEZER ──
     if detected is None:
         tw = detect_tweezer(df, idx)
         if tw is not None:
             frag = build_tweezer_signal(df, idx, tw)
             detected = {"pattern_type": tw, **frag}
 
+    # ── ENGULFING ──
     if detected is None:
         eng = detect_engulfing(df, idx)
         if eng is not None:
             direction = "long" if eng == "engulfing_bullish" else "short"
-            atr = float(row.get("atr", 0.0))
-            close = float(row["close"])
+            atr = row["ATR"]
+            close = row["Close"]
             if direction == "long":
-                sl = float(row["low"] - 0.3 * atr)
-                tp = float(close + 2.5 * atr)
+                sl = row["Low"] - 0.3 * atr
+                tp = close + 2.5 * atr
             else:
-                sl = float(row["high"] + 0.3 * atr)
-                tp = float(close - 2.5 * atr)
-            detected = {"pattern_type": eng, "direction": direction, "entry": float(close), "stop_loss": sl, "take_profit": tp}
+                sl = row["High"] + 0.3 * atr
+                tp = close - 2.5 * atr
+            detected = {"pattern_type": eng, "direction": direction, "entry": close, "stop_loss": sl, "take_profit": tp}
 
+    # ── SINGLE CANDLE ──
     if detected is None:
         for sc_name, sc_fn in [("hammer", detect_hammer), ("shooting_star", detect_shooting_star), ("doji", detect_doji)]:
             if sc_fn(row):
@@ -504,16 +531,11 @@ def analyze_df(df: pd.DataFrame, symbol: Optional[str] = None) -> List[Dict]:
 
     if detected is None:
         return []
+        
+    return [detected]
 
-    # Apply risk gate
-    valid, rr, position_size = risk_gate(detected["entry"], detected["stop_loss"], detected["take_profit"], detected.get("direction", "long"))
-    if not valid:
+# Wrapper for compatibility with pattern_matcher
+def analyze_df(df: pd.DataFrame, symbol: str = None) -> list[dict]:
+    if not symbol:
         return []
-
-    detected["rr"] = rr
-    detected["position_size"] = position_size
-    if symbol:
-        detected["symbol"] = symbol
-    signals.append(detected)
-
-    return signals
+    return analyze_ticker({"symbol": symbol})
