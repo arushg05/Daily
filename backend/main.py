@@ -100,7 +100,7 @@ def process_ticker(ticker: str, data_map: dict):
             ticker_setups.extend(setups)
 
         # Serialize candle data for frontend (only keep last 300 candles)
-        candle_data = serialize_candles(df.tail(300))
+        candle_data = serialize_candles(df_ind.tail(300))
         
         # Write per-ticker candle file
         tf_label = "daily" if timeframe == "1d" else "weekly"
